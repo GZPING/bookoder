@@ -1,64 +1,84 @@
 package com.edu.model;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
-	private static final long serialVersionUID = -4415990281535582814L;
-	private Integer id;
-	private String username;
+@SuppressWarnings("serial")
+public class User extends BaseModel {
+	private int id;
+	private String name;
 	private String password;
-
-	public Integer getId() {
+	private int admin;
+	private int status;
+	private String sex;
+	private String adminName;
+	private String academyName;
+	private String phone;
+	private String mail;
+	private String description;
+	
+	public int getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", password=" + password + ", username=" + username + "]";
+	public int getAdmin() {
+		return admin;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public void setAdmin(int admin) {
+		this.admin = admin;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public String getPhone() {
+		return phone;
 	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getAdminName() {
+		return adminName;
+	}
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+	public String getAcademyName() {
+		return academyName;
+	}
+	public void setAcademyName(String academyName) {
+		this.academyName = academyName;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 }

@@ -3,8 +3,16 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="user" type="com.edu.model.User"/>
+		<typeAlias alias="course" type="com.edu.model.Course"/>
+		<typeAlias alias="book" type="com.edu.model.Book"/>
+		<typeAlias alias="academy" type="com.edu.model.Academy"/> 
+		<typeAlias alias="major" type="com.edu.model.Major"/> 
+		<typeAlias alias="classModel" type="com.edu.model.ClassModel"/> 
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/edu/sqlmap/user.xml" />
+	<mapper resource="com/edu/sqlmap/course.xml" /> 
+		<mapper resource="com/edu/sqlmap/book.xml" /> 
+		<mapper resource="com/edu/sqlmap/aca.xml" /> 
 	</mappers>
 </configuration>	

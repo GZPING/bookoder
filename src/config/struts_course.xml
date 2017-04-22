@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.2.dtd">
+<struts>	
+	
+	<package name="course" namespace="/course" extends="struts-default">
+	
+		<action name="courseIndex" class="com.edu.action.CourseAction" method="searchAllCourse">
+			<result name="success">/pages/course/courseIndex.jsp</result>
+		</action>
+		<action name="searchAcademy" class="com.edu.action.CourseAction" method="searchAcademy">
+			<result name="success">/pages/course/academy.jsp</result>
+		</action>
+		<action name="verCourse" class="com.edu.action.CourseAction" method="verCourse">
+			<result name="success">/pages/course/verCourse.jsp</result>
+		</action>
+		<action name="searchCourseById" class="com.edu.action.CourseAction" method="searchCourseById">
+			<result name="success">/pages/course/infoCourse.jsp</result>
+		</action>
+		<action name="addCourse" class="com.edu.action.CourseAction" method="addCourse">
+			<result name="success">/pages/course/addCourse.jsp</result>
+		</action>
+		<action name="academyIndex" class="com.edu.action.CourseAction" method="searchAcademy">
+			<result name="success">/pages/academy/academyIndex.jsp</result>
+		</action>
+		
+	</package>
+	
+		<!-- json 数据 -->
+		<package name="courseJson" namespace="/courseJson" extends="json-default">
+		<action name="addCourse" class="com.edu.action.CourseAction" method="addCourse">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+	</package>
+</struts>    

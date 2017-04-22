@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.2.dtd">
+<struts>
+
+	<package name="aca" namespace="/aca" extends="struts-default">
+		<action name="academyIndex" class="com.edu.action.AcademyAction"
+			method="searchAcademy">
+			<result name="success">/pages/academy/academyIndex.jsp</result>
+		</action>
+		<action name="searchMajorByAcaId" class="com.edu.action.AcademyAction"
+			method="searchMajorByAcaId">
+			<result name="success">/pages/academy/infoMajor.jsp</result>
+		</action>
+		<action name="majorIndex" class="com.edu.action.AcademyAction"
+			method="searchMajor">
+			<result name="success">/pages/academy/majorIndex.jsp</result>
+		</action>
+		<action name="searchClassByMajId" class="com.edu.action.AcademyAction"
+			method="searchClassByMajId">
+			<result name="success">/pages/academy/infoClass.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- json 数据 -->
+	<package name="acaJson" namespace="/acaJson" extends="json-default">
+		<action name="deleteAca" class="com.edu.action.AcademyAction"
+			method="deleteAca">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="deleteMajor" class="com.edu.action.AcademyAction"
+			method="deleteMajor">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="deleteClass" class="com.edu.action.AcademyAction"
+			method="deleteClass">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+	</package>
+</struts>    

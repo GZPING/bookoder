@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.edu.dao.UserDao;
 import com.edu.model.User;
+import com.edu.util.Context;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -34,38 +35,30 @@ public class UserDaoImpl implements UserDao {
 	 * 
 	 * @see com.pdsu.edu.dao.impl.UserDao#updateUser(com.pdsu.edu.domain.User)
 	 */
-	public void updateUser(User user) {
-		sqlSessionTemplate.update(UPDATE_USER, user);
+	public void updateUser(User user) throws Exception {
+		sqlSessionTemplate.update(Context.UPDATE_USER, user);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.pdsu.edu.dao.impl.UserDao#deleteUser(java.lang.Integer)
-	 */
-	public void deleteUser(Integer userId) {
+	@Override
+	public void deleteUser(Integer userId) throws Exception{
 		sqlSessionTemplate.delete(DELETE_USER, userId);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.pdsu.edu.dao.impl.UserDao#findUserByid(java.lang.Integer)
-	 */
+	@Override
 	public User findUserByid(Integer userId) {
-		return sqlSessionTemplate.selectOne(FIND_USER_BYID, userId);
+		return sqlSessionTemplate.selectOne(Context.FIND_USER_BYID, userId);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.pdsu.edu.dao.impl.UserDao#findAll()
-	 */
 	public List<User> findAll() {
-		return sqlSessionTemplate.selectList(SELECT_ALL_USER);
+		return sqlSessionTemplate.selectList(Context.SELECT_ALL_USER );
 	}
 
 	public User userLogin(User user) {
 		return sqlSessionTemplate.selectOne(USER_LOGIN, user);
+	}
+
+	@Override
+	public void editAdmin(User user) throws Exception {
+		sqlSessionTemplate.update(Context.EDIT_ADMIN, user);
+		
 	}
 }

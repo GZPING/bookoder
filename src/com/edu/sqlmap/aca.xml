@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.model.Academy">
+
+	<resultMap type="com.edu.model.Academy" id="academyResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<resultMap type="com.edu.model.Major" id="majorResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+	</resultMap>
+	<resultMap type="com.edu.model.ClassModel" id="classResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="grade" column="grade" />
+		<result property="number" column="number" />
+	</resultMap>
+
+	<select id="selectAcademy" parameterType="academy" resultMap="academyResult">
+		select * from gobook.academy
+	</select>
+	<select id="selectMajor" parameterType="major" resultMap="majorResult">
+		select * from gobook.major
+	</select>
+	<select id="selectMajorByAcaId" parameterType="int" resultMap="majorResult">
+		select * from gobook.major where academyId=#{id}
+	</select>
+	<select id="selectClassByMajId" parameterType="int" resultMap="classResult">
+		select * from gobook.class where majorId=#{id}
+	</select>
+	
+	<delete id="deleteAcaByid" parameterType="int" >
+		delete from gobook.academy where id=#{id}
+	</delete>
+	<delete id="deleteClassByid" parameterType="int" >
+		delete from gobook.class where id=#{id}
+	</delete>
+	<delete id="deleteMajorByid" parameterType="int" >
+		delete from gobook.major where id=#{id}
+	</delete>
+	
+</mapper>

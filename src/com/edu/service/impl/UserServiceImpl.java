@@ -22,12 +22,11 @@ public class UserServiceImpl implements UserService {
 		userDao.insertUser(user);
 	}
 
-	// �����û�
-	public void updateUser(User user) {
+	public void updateUser(User user) throws Exception{
 		userDao.updateUser(user);
 	}
-
-	public void deleteUser(Integer userId) {
+	
+	public void deleteUser(Integer userId)  throws Exception {
 		userDao.deleteUser(userId);
 	}
 
@@ -41,5 +40,11 @@ public class UserServiceImpl implements UserService {
 
 	public User login(User user) {
 		return userDao.userLogin(user);
+	}
+
+	@Override
+	public void editAdmin(User user) throws Exception {
+		userDao.editAdmin(user);
+		
 	}
 }

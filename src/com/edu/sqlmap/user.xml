@@ -5,8 +5,16 @@
 
 	<resultMap type="com.edu.model.User" id="userResult">
 		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-		<result property="username" column="username" />
+		<result property="number" column="number" />
+		<result property="name" column="name" />
 		<result property="password" column="password" />
+		<result property="sex" column="sex" />
+		<result property="adminName" column="adminname" />
+		<result property="admin" column="admin" />
+		<result property="academyName" column="academy" />
+		<result property="phone" column="phone" />
+		<result property="mail" column="mail" />
+		<result property="description" column="description" />
 	</resultMap>
 	<select id="userLogin" parameterType="user" resultMap="userResult">
 		select *
@@ -16,12 +24,17 @@
 	</select>
 
 	<select id="selectAllUser" resultMap="userResult">
-		select * from user
+		select u.id,u.`name` `name` ,sex,`password`,admin,
+		a.name adminname ,ac.name academy,phone,mail,description
+		from gobook.`user` u,gobook.admin a ,gobook.academy ac
+		where u.admin=a.id and u.academyId=ac.id
 	</select>
 
 	<select id="findUserById" parameterType="int" resultMap="userResult">
-		select *
-		from user where id=#{id}
+		select u.id,u.`name` `name` ,sex,`password`,admin,
+		a.name adminname ,ac.name academy,phone,mail,description
+		from gobook.`user` u,gobook.admin a ,gobook.academy ac
+		where u.admin=a.id and u.academyId=ac.id and u.id=#{id}
 	</select>
 
 	<insert id="insertUser" parameterType="user">
@@ -30,14 +43,18 @@
 		user(username,password) values(#{username},#{password})
 		]]>
 	</insert>
-
+	
+	<update id="editAdmin" parameterType="user">
+		update gobook.`user` set admin=#{admin} where id=#{id}	
+	</update>
+	
 	<update id="updateUser" parameterType="user">
-		update user set
-		username=#{username},password=#{password} where id=#{id}
+	update gobook.`user` u set name=#{name},sex=#{sex},academyId=10007,admin=#{admin},
+    mail=#{mail},phone=#{phone},description=#{description} where u.id=#{id}
 	</update>
 
 	<delete id="deleteUser" parameterType="int">
-		delete from user where
+		delete from gobook.user where
 		id=#{id}
 	</delete>
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.model.Book">
+
+	<resultMap type="com.edu.model.Book" id="bookResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="auth" column="auth" />
+		<result property="pub" column="pub" />
+		<result property="price" column="pric" />
+		<result property="description" column="description" />
+	</resultMap>
+	
+	<select id="selectAllBook" parameterType="book" resultMap="bookResult">
+		select * from gobook.book 
+	</select>
+
+</mapper>

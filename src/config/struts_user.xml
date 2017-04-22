@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.2.dtd">
+<struts>
+
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="userIndex" class="com.edu.action.UserAction"
+			method="searchAllUser">
+			<result name="success">/pages/user/userIndex.jsp</result>
+		</action>
+		<action name="addUser" class="com.edu.action.UserAction"
+			method="addUser">
+			<result name="success">/pages/user/addUser.jsp</result>
+		</action>
+		<action name="editUser" class="com.edu.action.UserAction"
+			method="loadEditUser">
+			<result name="success">/pages/user/editUser.jsp</result>
+		</action>
+	</package>
+	<!-- json 数据 -->
+	<package name="userJson" namespace="/json" extends="json-default">
+		<action name="deleteUser" class="com.edu.action.UserAction" method="deleteUser">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="updateUser" class="com.edu.action.UserAction" method="updateUser">
+			<result name="success" type="json">
+			<param name="root">ajaxResult</param>
+			</result>
+		</action>
+	</package>
+
+</struts>    
