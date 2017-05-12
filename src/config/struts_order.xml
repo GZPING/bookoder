@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.2.dtd">
+<struts>
+
+	<package name="order" namespace="/order" extends="struts-default">
+		<action name="orderIndex" class="com.edu.action.OrderAction"
+			method="searchAllOrder">
+			<result name="success">/pages/order/orderIndex.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="orderapproval" class="com.edu.action.OrderAction"
+			method="loadApproval">
+			<result name="success">/pages/order/orderapproval.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+				<action name="orderapprovaled" class="com.edu.action.OrderAction"
+			method="loadApprovaled">
+			<result name="success">/pages/order/orderapprovaled.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="editOrder" class="com.edu.action.OrderAction"
+			method="loadEdit">
+			<result name="success">/pages/order/editOrder.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="myOrder" class="com.edu.action.OrderAction"
+			method="myOrder">
+			<result name="success">/pages/order/myOrder.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="addOrder" class="com.edu.action.OrderAction"
+			method="addOrder">
+			<result name="success">/pages/order/addOrder.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		
+		<action name="createOrder" class="com.edu.action.OrderAction"
+			method="createOrder">
+			<result name="success">/pages/order/createOrder.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="orderInfo" class="com.edu.action.OrderAction"
+			method="searchOrderInfo">
+			<result name="success">/pages/order/infoOrder.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="orderCart" class="com.edu.action.OrderAction"
+			method="orderCart">
+			<result name="success">/pages/order/orderCart.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="cartIndex" class="com.edu.action.OrderAction"
+			method="cartIndex">
+			<result name="success">/pages/order/cartIndex.jsp</result>
+			<result name="approval">/pages/order/cartIndexForApp.jsp</result>
+			<result name="cartForIndex">/pages/order/cartForIndex.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="cartInfo" class="com.edu.action.OrderAction"
+			method="cartInfo">
+			<result name="success">/pages/order/cartInfo.jsp</result>
+		</action>
+			<action name="cartOutInfo" class="com.edu.action.OrderAction"
+			method="cartOut">
+			<result name="success">/pages/order/cartOutInfo.jsp</result>
+		</action>
+		<action name="cartOut" class="com.edu.action.OrderAction"
+			method="cartOut">
+			<result name="success">/pages/order/cartOut.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+	</package>
+	<!-- json 数据 -->
+	<package name="orderJson" namespace="/orderJson" extends="json-default">
+		<action name="addOrder" class="com.edu.action.OrderAction"
+			method="addOrder">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="editOrder" class="com.edu.action.OrderAction"
+			method="editOrder">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="deleteOrder" class="com.edu.action.OrderAction"
+			method="deleteOrder">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="approvalOrder" class="com.edu.action.OrderAction"
+			method="approvalOrder">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="orderCart" class="com.edu.action.OrderAction"
+			method="orderCart">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="submitCart" class="com.edu.action.OrderAction"
+			method="submitCart">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="confirmCart" class="com.edu.action.OrderAction"
+			method="confirmCart">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="cartOut" class="com.edu.action.OrderAction"
+			method="cartOut">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+	</package>
+
+</struts>    

@@ -16,14 +16,14 @@ var Script = function () {
                 	digits:true
                 },
             	"user.name": "required",
-                "user.password": {
+                password: {
                     required: true,
                     minlength: 5
                 },
                 confirm_password: {
                     required: true,
                     minlength: 5,
-                    equalTo: "#'user.password'"
+                    equalTo: "#password"
                 },
                 "user.phone":{
                 	digits:true
@@ -43,7 +43,7 @@ var Script = function () {
                 	digits:"工号只能是数字"
                 },
                 "user.name": "请输入正确用户名",
-                "user.password": {
+                password: {
                     required: "请输入密码",
                     minlength: "您的密码长度必须至少为5个字符"
                 },

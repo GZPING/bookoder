@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.dao.CourseDao;
-import com.edu.model.Academy;
 import com.edu.model.Course;
 import com.edu.service.CourseService;
 
@@ -38,9 +37,20 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public Course searchCourseById(int id) throws Exception {
-		Course course=new Course();
-		course.setId(id);
-		return courseDao.selectVerCourse(course).get(0);
+		
+		return courseDao.selectCourseById(id);
+	}
+
+	@Override
+	public void updateCourse(Course course) throws Exception {
+		courseDao.updateCourse(course);
+		
+	}
+
+	@Override
+	public void addCourse(Course course) throws Exception {
+		courseDao.addCourse(course);
+		
 	}
 
 }

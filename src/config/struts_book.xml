@@ -6,10 +6,45 @@
 		<action name="bookIndex" class="com.edu.action.BookAction"
 			method="searchAllBook">
 			<result name="success">/pages/book/bookIndex.jsp</result>
+			<result name="bookForIndex">/pages/book/bookForIndex.jsp</result>
+			<result name="bookRead">/pages/book/bookRead.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+	   <action name="searchBook" class="com.edu.action.BookAction"
+			method="searchAllBook">
+			<result name="bookRead">/pages/book/book.jsp</result>
+		</action>
+		<action name="editBook" class="com.edu.action.BookAction"
+			method="editBook">
+			<result name="success">/pages/book/editBook.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="addBook" class="com.edu.action.BookAction"
+			method="loadAddBook">
+			<result name="success">/pages/book/addBook.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
 	</package>
 	<!-- json 数据 -->
 	<package name="bookJson" namespace="/bookJson" extends="json-default">
+		<action name="editBook" class="com.edu.action.BookAction"
+			method="editBook">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+				<action name="deleteBook" class="com.edu.action.BookAction"
+			method="deleteBook">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="addBook" class="com.edu.action.BookAction"
+			method="addBook">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
 	</package>
 
 </struts>    

@@ -1,8 +1,3 @@
-$(function(){
-	var i=2; //行数
-	$("tbody tr").hide();
-	$("tbody tr:eq(i)").show();
-})
 function selectAcademy(){
 	var path = $("#path").val();
 	
@@ -15,19 +10,74 @@ function selectAcademy(){
 			alert("");
 		},
 		success : function(data) {
-				$("#myModal").modal();
-				$("#myModal").empty();
-				$("#myModal").append(data);
+				$("#academyMenu").empty();
+				$("#academyMenu").append(data);
 		}
 	});
 }
-
-function comformAca(name){
-	$("#academy").val(name);
-	$("#myModal").modal('hide');
+/*
+ * 查找班级
+ */
+function selectClassByMajId(id){
+	var path = $("#path").val();
+	var param={"id":id};
+	$.ajax({
+		type : "POST",
+		url : path + "/course/searchClassByMajId",
+		dataType : "html",
+		data:param,
+		async : false,
+		error : function(request) {
+			alert("");
+		},
+		success : function(data) {
+			$("#academyMenu").empty();
+			$("#academyMenu").append(data);
+		}
+	});
+}
+/*
+ * 查找专业
+ */
+function selectMajorByAcaId(id){
+	var path = $("#path").val();
+	var param={"id":id};
+	$.ajax({
+		type : "POST",
+		url : path + "/course/searchMajorByAcaId",
+		dataType : "html",
+		data:param,
+		async : false,
+		error : function(request) {
+			alert("");
+		},
+		success : function(data) {
+			$("#academyMenu").empty();
+			$("#academyMenu").append(data);
+		}
+	});
+}
+function comformAca(name,id){
+	$("#academyId").val(id);
+	$("#academy").text(name);
+	$("#majorId").val(-1);
+	$("#major").text("专业");
+	$("#classId").val(-1);
+	$("#class").text("班级");
 }
 
- 
+function comformMajor(name,id){
+	$("#majorId").val(id);
+	$("#major").text(name);
+	$("#classId").val(-1);
+	$("#class").text("班级");
+}
+
+function comformClass(id){
+	$("#classId").val(id);
+	$("#className").text(id+"班");
+}
+/*
  function searchAcademy(){
 	var sstxt=$('#search').val();
     $("table tbody tr")
@@ -35,3 +85,7 @@ function comformAca(name){
     .filter(":contains('"+sstxt+"')")
     .show();
 }
+ 
+ $('.dropdown-menu a.removefromcart').click(function(e) {
+	    e.stopPropagation();
+	});*/

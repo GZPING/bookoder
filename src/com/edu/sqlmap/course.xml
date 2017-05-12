@@ -7,12 +7,18 @@
 		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
 		<result property="name" column="name" />
 		<result property="teacherName" column="teacher" />
+		<result property="academyId" column="academyid" />
+		<result property="majorId" column="majorid" />
 		<result property="classId" column="classId" />
 		<result property="bookName" column="book" />
+		<result property="bookId" column="bookid" />
+		<result property="bookPrice" column="bookprice" />
+		<result property="teacherId" column="teacherid" />
 		<result property="status" column="status" />
 		<result property="udate" column="udate" />
 		<result property="uperson" column="uperson" />
 		<result property="academy" column="academy" />
+		<result property="majorName" column="majorname" />
 		<result property="description" column="description" />
 	</resultMap>
 
@@ -30,7 +36,7 @@
 	<select id="selectVerCourse" parameterType="course" resultMap="courseResult">
 		select c.id id,c.name name,m.`id` classId ,u.`name` teacher,
 		b.`name`
-		book , a.`name` academy ,c.description description ,c.`status`
+		book ,a.`name` academy ,c.description description ,c.`status`
 		`status`,c.udate udate ,(select user.name from user where
 		user.id=c.uperson) uperson
 		from gobook.course
@@ -41,22 +47,46 @@
 		and c.academyId=a.id and c.teacherId=u.id and
 		c.bookId=b.id and
 		(c.status=1 or c.status=2)
-		<if test="null!=id or 0==id">
-			and c.id=#{id}
-		</if>
+
 	</select>
 
 	<select id="selectAllCourse" parameterType="course"  resultMap="courseResult">
 		select
-		c.id id,c.name name,m.`id` classId ,u.`name` teacher,
-		b.`name`
-		book ,
+		c.id id,c.name name,m.`id` classId ,u.`name` teacher,b.id bookid,
+		b.`name` book ,b.price bookprice, 
 		a.`name` academy ,c.description description
 		from gobook.course
 		c,gobook.user u,gobook.class m,gobook.academy a ,gobook.book b
 		where
 		c.classId=m.id and c.academyId=a.id and c.teacherId=u.id and
 		c.bookId=b.id
+		<if test="teacherId!=null">
+		    and c.teacherId=#{teacherId}
+		</if>
 	</select>
-
+	
+	<select id="selectCourseById" parameterType="int" resultMap="courseResult">
+	    select c.id id,c.name name,m.`id` classId ,u.`name` teacher,
+		b.`name`
+		book , a.`name` academy, c.academyId academyid,(select major.`name` from major where major.id=c.majorId) majorname,c.majorId majorid,c.description description ,c.`status`
+		`status`,c.udate udate ,c.teacherId teacherid,c.bookId bookid,(select user.name from user where
+		user.id=c.uperson) uperson
+		from gobook.course
+		c,gobook.user
+		u,gobook.class m,gobook.academy a ,gobook.book b
+		where
+		c.classId=m.id
+		and c.academyId=a.id and c.teacherId=u.id and
+		c.bookId=b.id and c.id=#{id}
+	</select>
+	
+	<insert id="addCourse" parameterType="course">
+	    insert into course values (#{id},#{name},#{classId},#{majorId},#{academyId},
+	    #{teacherId},#{bookId},now(),#{personId},#{status},#{description})
+	</insert>
+	<update id="updateCourse" parameterType="course">
+		update course set name=#{name},classId=#{classId},majorId=#{majorId},academyId=#{academyId},
+	    teacherId=#{teacherId},bookId=#{bookId},udate=now(),uperson=#{personId},status=#{status},description=#{description}
+	    where id=#{id}
+	    </update>
 </mapper>

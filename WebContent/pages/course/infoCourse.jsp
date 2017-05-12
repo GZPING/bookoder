@@ -14,7 +14,7 @@
 	</tr>
 	<tr>
 		<td>更新人:<s:property value="course.uperson" /></td>
-		<td>更新时间:<s:property value="course.udate" /></td>
+		<td>更新时间:<s:date name="course.udate" format="yyyy-MM-dd hh:mm:ss" /></td>
 	</tr>
 		<tr>
 		<td>描述:<s:property value="course.description" /></td>

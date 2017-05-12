@@ -45,14 +45,14 @@
 
 <section>
     <!-- left side start-->
-    <%@include file="/pages/Left.jsp" %>
+    <%@include file="/pages/left.jsp" %>
     <!-- left side end-->
 
     <!-- main content start-->
     <div class="main-content">
 
         <!-- header section start-->
-        <%@include file="/pages/TopMenu.jsp" %>
+        <%@include file="/pages/topMenu.jsp" %>
         <!-- header section end-->
 
         <!-- page heading start-->

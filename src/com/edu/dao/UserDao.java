@@ -16,8 +16,15 @@ public interface UserDao {
 
 	public abstract List<User> findAll();
 
-	public abstract User userLogin(User user);
+	public abstract User userLogin(User user) throws Exception;
 
 	public abstract void editAdmin(User user)throws Exception;
+
+	public abstract void editPwd(User user)throws Exception;
+
+	public abstract  List<User> selectUser(User user)throws Exception;
+
+	public abstract void updateUserStatus(User user);
+
 
 }

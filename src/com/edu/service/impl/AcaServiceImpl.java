@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.dao.AcaDao;
 import com.edu.model.Academy;
+import com.edu.model.ClassModel;
 import com.edu.model.Major;
 import com.edu.service.AcaService;
 
@@ -18,7 +19,7 @@ public class AcaServiceImpl implements AcaService {
 
 	@Autowired
 	private AcaDao acaDao;
-	
+
 	@Override
 	public List<Academy> searchAcademy(Academy aca) throws Exception {
 		return acaDao.selectAcademy(aca);
@@ -42,16 +43,33 @@ public class AcaServiceImpl implements AcaService {
 	@Override
 	public void seleteAca(int id) throws Exception {
 		acaDao.deleteAcaById(id);
-		
+
 	}
 
 	@Override
 	public void seleteClass(int id) throws Exception {
-		acaDao.deleteClassById(id);		
+		acaDao.deleteClassById(id);
 	}
 
 	@Override
 	public void seleteMajor(int id) throws Exception {
-		acaDao.deleteMajorById(id);		
+		acaDao.deleteMajorById(id);
+	}
+
+	@Override
+	public void addMajor(Major major) throws Exception {
+		acaDao.addMajor(major);
+	}
+
+	@Override
+	public void addClass(ClassModel classModel) throws Exception {
+		acaDao.addClass(classModel);
+
+	}
+
+	@Override
+	public void addAca(Academy aca) throws Exception {
+		acaDao.insertAca(aca);
+		
 	}
 }

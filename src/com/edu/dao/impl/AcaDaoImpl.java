@@ -9,6 +9,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
 import com.edu.dao.AcaDao;
 import com.edu.model.Academy;
+import com.edu.model.ClassModel;
 import com.edu.model.Major;
 import com.edu.util.Context;
 
@@ -52,5 +53,22 @@ public class AcaDaoImpl implements AcaDao {
 	@Override
 	public void deleteMajorById(int id) throws Exception {
 		sqlSessionTemplate.delete(Context.DELETE_MAJOR_BYID, id);		
+	}
+
+	@Override
+	public void addMajor(Major major) throws Exception {
+		sqlSessionTemplate.insert(Context.INSERT_MAJOR, major);
+		
+	}
+
+	@Override
+	public void addClass(ClassModel classModel) throws Exception {
+		sqlSessionTemplate.insert(Context.INSERT_CLASS, classModel);
+		
+	}
+
+	@Override
+	public void insertAca(Academy aca) {
+		sqlSessionTemplate.insert("insertAca", aca);
 	}
 }

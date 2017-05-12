@@ -7,6 +7,8 @@ public class Book {
 	private String pub;
 	private int price;
 	private String image;
+	private String description;
+	private int pageNum;
 	
 	public int getId() {
 		return id;
@@ -43,6 +45,18 @@ public class Book {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public int getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
 	}
 	
 }

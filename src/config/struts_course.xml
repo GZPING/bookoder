@@ -6,9 +6,19 @@
 	
 		<action name="courseIndex" class="com.edu.action.CourseAction" method="searchAllCourse">
 			<result name="success">/pages/course/courseIndex.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
-		<action name="searchAcademy" class="com.edu.action.CourseAction" method="searchAcademy">
-			<result name="success">/pages/course/academy.jsp</result>
+		<action name="searchCourse" class="com.edu.action.CourseAction" method="searchAllCourse">
+			<result name="success">/pages/course/course.jsp</result>
+		</action>
+		<action name="searchAcademy" class="com.edu.action.AcademyAction" method="searchAcademy">
+			<result name="success">/pages/academy/academy.jsp</result>
+		</action>
+		<action name="searchClassByMajId" class="com.edu.action.AcademyAction" method="searchClassByMajId">
+			<result name="success">/pages/academy/class.jsp</result>
+		</action>
+		<action name="searchMajorByAcaId" class="com.edu.action.AcademyAction" method="searchMajorByAcaId">
+			<result name="success">/pages/academy/major.jsp</result>
 		</action>
 		<action name="verCourse" class="com.edu.action.CourseAction" method="verCourse">
 			<result name="success">/pages/course/verCourse.jsp</result>
@@ -19,6 +29,9 @@
 		<action name="addCourse" class="com.edu.action.CourseAction" method="addCourse">
 			<result name="success">/pages/course/addCourse.jsp</result>
 		</action>
+		<action name="editCourse" class="com.edu.action.CourseAction" method="loadEditCourse">
+			<result name="success">/pages/course/editCourse.jsp</result>
+		</action>
 		<action name="academyIndex" class="com.edu.action.CourseAction" method="searchAcademy">
 			<result name="success">/pages/academy/academyIndex.jsp</result>
 		</action>
@@ -28,6 +41,11 @@
 		<!-- json 数据 -->
 		<package name="courseJson" namespace="/courseJson" extends="json-default">
 		<action name="addCourse" class="com.edu.action.CourseAction" method="addCourse">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="updateCourse" class="com.edu.action.CourseAction" method="updateCourse">
 			<result name="success" type="json">
 				<param name="root">ajaxResult</param>
 			</result>

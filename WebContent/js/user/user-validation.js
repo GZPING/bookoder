@@ -1,7 +1,9 @@
 var Script = function () {
 
     $.validator.setDefaults({
-        submitHandler: function() { alert("submitted!"); }
+        submitHandler: function() { 
+        	addUser();
+        }
     });
 
     $().ready(function() {
@@ -15,26 +17,21 @@ var Script = function () {
                 	required: true,
                 	digits:true
                 },
-            	"user.name": "required",
-                "user.password": {
+                "user.name": "required",
+                password: {
                     required: true,
                     minlength: 5
                 },
-                confirm_password: {
+                "user.password": {
                     required: true,
                     minlength: 5,
-                    equalTo: "#'user.password'"
+                    equalTo: "#password"
                 },
                 "user.phone":{
                 	digits:true
                 },
                 "user.mail": {
-                    required: true,
                     email: true
-                },
-                topic: {
-                    required: "#newsletter:checked",
-                    minlength: 2
                 },
             },
             messages: {
@@ -42,17 +39,17 @@ var Script = function () {
                 	required: "请输入正确工号",
                 	digits:"工号只能是数字"
                 },
-                "user.name": "请输入正确用户名",
-                "user.password": {
+               "user.name": "请输入正确用户名" ,
+              password: {
                     required: "请输入密码",
                     minlength: "您的密码长度必须至少为5个字符"
                 },
-                confirm_password: {
+                "user.password": {
                     required: "请确认密码",
-                    minlength: "您的密码长度必须至少为5个字符",
                     equalTo: "请输入与上述相同的密码"
                 },
                 "user.mail": "请输入有效的电子邮件地址",
+                "user.phone": "电话号码错误",
             }
         });
     

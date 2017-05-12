@@ -1,7 +1,7 @@
-function updateUser(){
+function addCourse(){
 		var path = $("#path").val();
 		var param=$("#courseInfoForm").serialize();
-		var url=path + "/json/addCourse";
+		var url=path + "/courseJson/addCourse?id=1";
 		$.ajax({
 			type : 'post',
 			url : url,
@@ -9,15 +9,41 @@ function updateUser(){
 			data : param,// 序列化表单值  
 			async : false,
 			error : function(request) {
-				alert("添加课程失败");
+				alert("出现一个意料之外的错误");
 			},
 			success : function(data) {
-				alert(data);
 				if (data== "success") {
-					location.reload();
+					if (confirm("添加成功，是否继续添加？")) {
+					}{
+						window.location.href =path+"/course/courseIndex";
+					}
 				}else{
-					alert("添加课程失败");
+					alert("添加课程失败,可能课号已存在");
 				}
 			}
 		});
 	};
+	
+	function updateCourse(){
+		var path = $("#path").val();
+		var param=$("#courseInfoForm").serialize();
+		var url=path + "/courseJson/updateCourse?id=1";
+		$.ajax({
+			type : 'post',
+			url : url,
+			dataType : 'json',
+			data : param,// 序列化表单值  
+			async : false,
+			error : function(request) {
+				alert("出现一个意料之外的错误");
+			},
+			success : function(data) {
+				if (data== "success") {
+					window.location.href =path+"/course/courseIndex";
+				}else{
+					alert("修改课程失败");
+				}
+			}
+		});
+	};
+	

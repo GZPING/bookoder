@@ -26,6 +26,23 @@ public class CourseDaoImpl implements CourseDao {
 		return sqlSessionTemplate.selectList(Context.SELECT_VER_COURSE,course);
 	}
 
+	@Override
+	public void addCourse(Course course) throws Exception {
+		sqlSessionTemplate.selectList(Context.ADD_COURSE,course);
+		
+	}
+
+	@Override
+	public void updateCourse(Course course) throws Exception {
+		sqlSessionTemplate.selectList(Context.UPDATE_COURSE,course);		
+	}
+
+	@Override
+	public Course selectCourseById(int id) throws Exception {
+		
+		return sqlSessionTemplate.selectOne(Context.SELECT_COURSE_BYID, id);
+	}
+
 
 	
 	

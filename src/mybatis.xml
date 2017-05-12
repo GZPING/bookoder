@@ -8,11 +8,16 @@
 		<typeAlias alias="academy" type="com.edu.model.Academy"/> 
 		<typeAlias alias="major" type="com.edu.model.Major"/> 
 		<typeAlias alias="classModel" type="com.edu.model.ClassModel"/> 
+		<typeAlias alias="order" type="com.edu.model.Order"/> 
+		<typeAlias alias="store" type="com.edu.model.Store"/> 
+		<typeAlias alias="storeio" type="com.edu.model.StoreIO"/> 
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/edu/sqlmap/user.xml" />
 	<mapper resource="com/edu/sqlmap/course.xml" /> 
 		<mapper resource="com/edu/sqlmap/book.xml" /> 
 		<mapper resource="com/edu/sqlmap/aca.xml" /> 
+		<mapper resource="com/edu/sqlmap/store.xml" /> 
+		<mapper resource="com/edu/sqlmap/order.xml" /> 
 	</mappers>
 </configuration>	

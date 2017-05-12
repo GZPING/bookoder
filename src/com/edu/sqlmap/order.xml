@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.model.Order">
+
+	<resultMap type="com.edu.model.Order" id="orderResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="bookName" column="bookname" />
+		<result property="courseName" column="coursename" />
+		<result property="number" column="number" />
+		<result property="price" column="price" />
+		<result property="pub" column="pub" />
+		<result property="academy" column="academy" />
+		<result property="person" column="person" />
+		<result property="totalPrice" column="totalprice" />
+		<result property="date" column="date" />
+		<result property="udate" column="udate" />
+		<result property="storeNumber" column="storenum" />
+		<result property="storePlace" column="storeplace" />
+		<result property="status" column="status" />
+		<result property="cartId" column="cart" />
+	</resultMap>
+	<resultMap type="com.edu.model.Order" id="orderInfo">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="bookName" column="bookname" />
+		<result property="bookId" column="bookid" />
+		<result property="price" column="price" />
+		<result property="courseName" column="coursename" />
+		<result property="number" column="number" />
+		<result property="pub" column="pub" />
+		<result property="status" column="status" />
+		<result property="date" column="date" />
+		<result property="udate" column="udate" />
+		<result property="person" column="person" />
+		<result property="uperson" column="uperson" />
+		<result property="description" column="description" />
+		<result property="cartId" column="cart" />
+	</resultMap>
+	<resultMap type="com.edu.model.Cart" id="cartResult">
+		<result property="id" column="cartId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="date" column="date" />
+		<result property="person" column="person" />
+		<result property="personPhone" column="phone" />
+		<result property="personMail" column="mail" />
+		<result property="status" column="status" />
+		<result property="price" column="price" />
+		<result property="totalNum" column="totalnum" />
+	</resultMap>
+
+	<select id="selectOrder" parameterType="order" resultMap="orderResult">
+	    <![CDATA[ 
+		select
+		o.id id,o.number number,b.name bookname,b.price price ,o.totalPrice totalprice,c.name coursename,o.`status`
+		`status`,o.date date,o.udate udate,b.pub pub,(select name from user u where u.id=o.personId )
+		person,(select name from academy a where a.id=c.academyId) academy
+		from `order` o,book b,course c
+		where o.bookId=b.id and
+		o.courseId=c.id and o.status<#{status}
+			]]>    
+		<if test="admin==103">
+		    and o.personId=#{personId}
+		</if>
+		<if test="admin==102">
+		    and c.academyId=(select u.academyId from user u where u.id=#{personId})
+		</if>
+
+		ORDER BY date DESC
+	
+	</select>
+		<select id="selectAppOrder" parameterType="order" resultMap="orderResult">
+	    <![CDATA[ 
+		select
+		o.id id,o.number number,b.name bookname,b.price price ,o.totalPrice totalprice,c.name coursename,o.`status`
+		`status`,o.date date,o.udate udate,b.pub pub,(select name from user u where u.id=o.personId )
+		person,(select name from academy a where a.id=c.academyId) academy
+		from `order` o,book b,course c
+		where o.bookId=b.id and
+		o.courseId=c.id and o.status=#{status}
+			]]>    
+		<if test="admin==102">
+		    and c.academyId=(select u.academyId from user u where u.id=#{personId})
+		</if>
+
+		ORDER BY date DESC
+	
+	</select>
+	<select id="selectApproval" parameterType="order" resultMap="orderResult">
+	   <![CDATA[ 
+	    select
+		o.id id,o.number number,b.name bookname,b.price price ,o.totalPrice totalprice,c.name coursename,o.`status`
+		`status`,o.date date,o.udate udate,b.pub pub,(select name from user u where u.id=o.personId )
+		person,(select name from academy a where a.id=c.academyId) academy
+		from `order` o,book b,course c
+		where o.bookId=b.id and
+		o.courseId=c.id  and o.status>=#{status} and cart is null
+			]]> 
+			<if test="personId!=0">
+			    and (o.personId=#{personId} or o.upersonId=#{upersonId} )
+			</if>
+	</select>
+	<select id="selectOrderById" parameterType="int" resultMap="orderInfo">
+		select
+		o.id id,o.number number,b.name bookname,o.bookId bookid,b.price price ,c.name
+		coursename,o.`status` `status`,
+		o.date date,o.udate udate,(select name from user u where u.id=o.personId )
+		person,(select name from user u where u.id=o.upersonId )
+		uperson,o.description description,b.pub pub,o.cart cart
+		from `order` o,book b,course c 
+		where o.bookId=b.id and o.courseId=c.id and o.id=#{id}
+	</select>
+	<insert id="addOrder" parameterType="order">
+		insert into  `order` (bookId,courseId,number,totalPrice,date,personId,status,description)
+		values(#{bookId},#{courseId},#{number},#{totalPrice},now(),#{personId},#{status},#{description})
+	</insert>
+	<update id="updateOrder" parameterType="order">
+		update  `order` set number=#{number},totalPrice=#{totalPrice},udate=now(),description=#{description},
+		upersonId=#{upersonId},status=#{status}
+		<if test="courseId!=0">
+		    ,bookId=#{bookId},courseId=#{courseId}
+		</if>
+		where id=#{id}
+	</update>
+	<delete id="deleteOrder" parameterType="int">
+		delete from `order` where
+		id=#{id}
+	</delete>
+	<update id="updateOrderStatus" parameterType="order">
+	    update  `order` set status=#{status} where id=#{id}
+	</update>
+	<update id="updateOrderCart" parameterType="order">
+	    update `order` set cart=#{cartId} where id=#{id}
+	</update>
+	<insert id="insertCart" parameterType="com.edu.model.Order">
+	    insert into cart(id,date,personId,price,status,totalNumber) values(#{id},now(),#{personId},#{price},#{status},#{totalNum})
+	</insert>
+	
+	<select id="selectCart" parameterType="com.edu.model.Order" resultMap="cartResult">
+	    select c.id cartId,c.price price,c.status status,c.date date,u.name person,u.phone phone,u.mail mail,c.totalNumber totalnum
+	    from cart c ,`user` u where c.personId=u.id
+	    <if test="id!=0">
+	        and c.id=#{id}
+	    </if>
+	  	  ORDER BY date DESC
+	    <if test="totalNum!=0">
+	          limit 0,#{totalNum}
+	    </if>
+	   	 
+	</select>
+	<select id="selectOrderByCart" parameterType="int" resultMap="orderResult">
+	   	select
+		o.id id,o.number number,b.name bookname,b.price price ,o.totalPrice totalprice,c.name coursename,o.`status`
+		`status`,b.pub pub,(select name from user u where u.id=o.personId )
+		person,s.number storenum,s.place storeplace,b.id bookid
+		from `order` o,book b,course c ,store  s 
+		where o.bookId=b.id and
+		o.courseId=c.id and s.bookId=o.bookId and o.cart=#{id}
+	</select>
+
+	<update id="updateCartStatus" parameterType="com.edu.model.Cart" >
+	    update cart set status=#{status} where id=#{id}
+	</update>
+	
+	<select id="selectMyOrder" parameterType="order" resultMap="orderResult">
+	    select
+		o.id id,o.number number,b.name bookname,b.price price ,o.totalPrice totalprice,c.name coursename,o.`status`
+		`status`,o.date date,o.udate udate,b.pub pub,(select name from user u where u.id=o.personId )
+		person,(select name from academy a where a.id=c.academyId) academy,o.cart cart
+		from `order` o,book b,course c
+		where o.bookId=b.id and
+		o.courseId=c.id and o.personId=#{personId}
+	</select>
+	
+</mapper>

@@ -6,6 +6,7 @@
 		<action name="academyIndex" class="com.edu.action.AcademyAction"
 			method="searchAcademy">
 			<result name="success">/pages/academy/academyIndex.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
 		<action name="searchMajorByAcaId" class="com.edu.action.AcademyAction"
 			method="searchMajorByAcaId">
@@ -14,10 +15,21 @@
 		<action name="majorIndex" class="com.edu.action.AcademyAction"
 			method="searchMajor">
 			<result name="success">/pages/academy/majorIndex.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
 		<action name="searchClassByMajId" class="com.edu.action.AcademyAction"
 			method="searchClassByMajId">
 			<result name="success">/pages/academy/infoClass.jsp</result>
+		</action>
+		<action name="addMajor" class="com.edu.action.AcademyAction"
+			method="addMajor">
+			<result name="success">/pages/academy/addMajor.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="addClass" class="com.edu.action.AcademyAction"
+			method="addClass">
+			<result name="success">/pages/academy/addClass.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
 
 	</package>
@@ -38,6 +50,24 @@
 		</action>
 		<action name="deleteClass" class="com.edu.action.AcademyAction"
 			method="deleteClass">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+				<action name="addMajor" class="com.edu.action.AcademyAction"
+			method="addMajor">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+	<action name="addClass" class="com.edu.action.AcademyAction"
+		method="addClass">
+		<result name="success" type="json">
+			<param name="root">ajaxResult</param>
+		</result>
+	</action>
+		<action name="addAca" class="com.edu.action.AcademyAction"
+			method="addAca">
 			<result name="success" type="json">
 				<param name="root">ajaxResult</param>
 			</result>

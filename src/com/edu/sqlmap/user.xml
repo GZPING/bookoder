@@ -12,50 +12,87 @@
 		<result property="adminName" column="adminname" />
 		<result property="admin" column="admin" />
 		<result property="academyName" column="academy" />
+		<result property="academyId" column="academyId" />
 		<result property="phone" column="phone" />
 		<result property="mail" column="mail" />
+		<result property="status" column="status" />
+		<result property="udate" column="udate" />
+		<result property="uperson" column="uperson" />
 		<result property="description" column="description" />
 	</resultMap>
+
 	<select id="userLogin" parameterType="user" resultMap="userResult">
-		select *
-		from user
-		where
-		username=#{username} and password=#{password}
+		select
+		u.id id,u.name name,u.sex sex,u.academyId academyId ,u.admin
+		admin,u.phone phone,
+		u.mail mail ,u.`status` status ,u.description
+		description,a.`name` adminname
+		from user u,admin a
+		where u.admin=a.id
+		and u.id=#{id} and u.password=#{password}
 	</select>
 
-	<select id="selectAllUser" resultMap="userResult">
-		select u.id,u.`name` `name` ,sex,`password`,admin,
-		a.name adminname ,ac.name academy,phone,mail,description
-		from gobook.`user` u,gobook.admin a ,gobook.academy ac
+	<select id="selectAllUser" parameterType="user" resultMap="userResult">
+		select u.id,u.`name` `name`
+		,sex,`password`,admin,
+		a.name adminname ,ac.name
+		academy,phone,mail,description
+		from gobook.`user` u,gobook.admin a
+		,gobook.academy ac 
 		where u.admin=a.id and u.academyId=ac.id
+		<if test="admin!=0">
+		    and u.admin=#{admin}
+		</if>
+		<if test="status!=0">
+		    and u.status=0
+		</if>
 	</select>
 
 	<select id="findUserById" parameterType="int" resultMap="userResult">
-		select u.id,u.`name` `name` ,sex,`password`,admin,
-		a.name adminname ,ac.name academy,phone,mail,description
-		from gobook.`user` u,gobook.admin a ,gobook.academy ac
-		where u.admin=a.id and u.academyId=ac.id and u.id=#{id}
+		select
+		u.id,u.`name` `name` ,sex,`password`,admin,
+		a.name adminname ,academyId academyId,ac.name
+		academy,phone,mail,description
+		from gobook.`user` u,gobook.admin a
+		,gobook.academy ac
+		where u.admin=a.id and u.academyId=ac.id and
+		u.id=#{id}
 	</select>
 
 	<insert id="insertUser" parameterType="user">
 	 <![CDATA[
-		insert into
-		user(username,password) values(#{username},#{password})
+		insert into user (id,name,sex,password,academyId,admin,phone,mail,udate,uperson,status,description)
+		VALUES (#{id},#{name},#{sex},#{password},#{academyId},#{admin},#{phone},#{mail},now(),#{upersonId},#{status},#{description})
 		]]>
 	</insert>
-	
+
 	<update id="editAdmin" parameterType="user">
-		update gobook.`user` set admin=#{admin} where id=#{id}	
+		update gobook.`user` set
+		admin=#{admin} where id=#{id}
 	</update>
-	
+
+	<update id="editPwd" parameterType="user">
+		update `user` set
+		password=#{password} where id=#{id}
+	</update>
+
 	<update id="updateUser" parameterType="user">
-	update gobook.`user` u set name=#{name},sex=#{sex},academyId=10007,admin=#{admin},
-    mail=#{mail},phone=#{phone},description=#{description} where u.id=#{id}
+		update `user` u set
+		name=#{name},sex=#{sex},
+		<if test="academyId!=null">
+		    academyId=#{academyId},admin=#{admin},
+		</if>
+		mail=#{mail},phone=#{phone},description=#{description} where
+		u.id=#{id}
 	</update>
 
 	<delete id="deleteUser" parameterType="int">
-		delete from gobook.user where
+		delete from gobook.user
+		where
 		id=#{id}
 	</delete>
+	<update id="updateUserStatus" parameterType="user" >
+	    update `user` set status=1 where id=#{id}
+	</update>
 
 </mapper>

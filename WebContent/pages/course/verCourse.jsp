@@ -112,9 +112,10 @@
 
 	<!-- END JAVASCRIPTS -->
 	<script>
-		jQuery(document).ready(function() {
-			EditableTable.init();
-		});
+	$(function() {
+		$("#course").addClass("nav-active");
+		$("#verCourse").addClass("active");
+	})
 	</script>
 
 </body>

@@ -1,5 +1,7 @@
 package com.edu.model;
 
+import java.sql.Time;
+
 @SuppressWarnings("serial")
 public class User extends BaseModel {
 	private int id;
@@ -7,11 +9,15 @@ public class User extends BaseModel {
 	private String password;
 	private int admin;
 	private int status;
+	private int upersonId;
 	private String sex;
 	private String adminName;
 	private String academyName;
+	private String academyId;
 	private String phone;
 	private String mail;
+	private Time udate;
+	private String uperson;
 	private String description;
 	
 	public int getId() {
@@ -79,6 +85,30 @@ public class User extends BaseModel {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public Time getUdate() {
+		return udate;
+	}
+	public void setUdate(Time udate) {
+		this.udate = udate;
+	}
+	public String getUperson() {
+		return uperson;
+	}
+	public void setUperson(String uperson) {
+		this.uperson = uperson;
+	}
+	public String getAcademyId() {
+		return academyId;
+	}
+	public void setAcademyId(String academyId) {
+		this.academyId = academyId;
+	}
+	public int getUpersonId() {
+		return upersonId;
+	}
+	public void setUpersonId(int upersonId) {
+		this.upersonId = upersonId;
 	}
 	
 }

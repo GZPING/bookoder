@@ -12,29 +12,17 @@ import com.edu.util.Context;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-	private final String INSERT_USER = "insertUser";
-	private final String UPDATE_USER = "updateUser";
+
 	private final String DELETE_USER = "deleteUser";
-	private final String FIND_USER_BYID = "findUserById";
-	private final String SELECT_ALL_USER = "selectAllUser";
-	private final String USER_LOGIN = "userLogin";
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.pdsu.edu.dao.impl.UserDao#insertUser(com.pdsu.edu.domain.User)
-	 */
+	
 	public void insertUser(User user) {
-		sqlSessionTemplate.insert(INSERT_USER, user);
+		sqlSessionTemplate.insert(Context.INSERT_USER, user);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.pdsu.edu.dao.impl.UserDao#updateUser(com.pdsu.edu.domain.User)
-	 */
 	public void updateUser(User user) throws Exception {
 		sqlSessionTemplate.update(Context.UPDATE_USER, user);
 	}
@@ -53,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public User userLogin(User user) {
-		return sqlSessionTemplate.selectOne(USER_LOGIN, user);
+		return sqlSessionTemplate.selectOne(Context.USER_LOGIN, user);
 	}
 
 	@Override
@@ -61,4 +49,22 @@ public class UserDaoImpl implements UserDao {
 		sqlSessionTemplate.update(Context.EDIT_ADMIN, user);
 		
 	}
+
+	@Override
+	public void editPwd(User user) throws Exception {
+		sqlSessionTemplate.update(Context.EDIT_PWD, user);
+		
+	}
+
+	@Override
+	public List<User> selectUser(User user) throws Exception {
+		return sqlSessionTemplate.selectList(Context.SELECT_ALL_USER ,user);
+		
+	}
+
+	@Override
+	public void updateUserStatus(User user) {
+		sqlSessionTemplate.update("updateUserStatus", user);
+	}
+
 }

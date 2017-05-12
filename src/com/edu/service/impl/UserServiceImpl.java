@@ -34,17 +34,29 @@ public class UserServiceImpl implements UserService {
 		return userDao.findUserByid(userId);
 	}
 
-	public List<User> findAllUser() {
-		return userDao.findAll();
-	}
-
-	public User login(User user) {
+	public User login(User user) throws Exception{
 		return userDao.userLogin(user);
 	}
 
 	@Override
 	public void editAdmin(User user) throws Exception {
 		userDao.editAdmin(user);
+		
+	}
+
+	@Override
+	public void editPwd(User user) throws Exception {
+		userDao.editPwd(user);
+	}
+
+	@Override
+	public List<User> findAllUser(User user) throws Exception {
+		return userDao.selectUser(user);
+	}
+
+	@Override
+	public void approvalUser(User user) throws Exception {
+		userDao.updateUserStatus(user);
 		
 	}
 }

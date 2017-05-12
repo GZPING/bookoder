@@ -6,6 +6,7 @@ package com.edu.model;
 public class Major extends BaseModel {
 	private int id;
 	private String name;
+	private int academyId;
 	private String academy;
 	
 	public int getId() {
@@ -25,6 +26,12 @@ public class Major extends BaseModel {
 	}
 	public void setAcademy(String academy) {
 		this.academy = academy;
+	}
+	public int getAcademyId() {
+		return academyId;
+	}
+	public void setAcademyId(int academyId) {
+		this.academyId = academyId;
 	}
 	
 }

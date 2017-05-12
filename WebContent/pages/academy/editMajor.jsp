@@ -159,7 +159,7 @@
 	<script src="js/scripts.js"></script>
 	
 	<script src="js/user/userManager.js"></script>
-	<script src="js/course/academy.js"></script>
+	<script src="js/aca/academy.js"></script>
 	
 	<script type="text/javascript">
 	function updateUser(){

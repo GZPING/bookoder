@@ -7,6 +7,8 @@ public class ClassModel extends BaseModel {
 	private String major;
 	private String academy;
 	private int grade;
+	private int majorId;
+	private int academyId;
 	private int number;
 	
 	public int getId() {
@@ -38,5 +40,17 @@ public class ClassModel extends BaseModel {
 	}
 	public void setNumber(int number) {
 		this.number = number;
+	}
+	public int getMajorId() {
+		return majorId;
+	}
+	public void setMajorId(int majorId) {
+		this.majorId = majorId;
+	}
+	public int getAcademyId() {
+		return academyId;
+	}
+	public void setAcademyId(int academyId) {
+		this.academyId = academyId;
 	}
 }

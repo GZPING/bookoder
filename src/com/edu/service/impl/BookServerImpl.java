@@ -22,4 +22,20 @@ public class BookServerImpl implements BookService {
 		return bookDao.selectAllBook(book);
 	}
 
+	@Override
+	public void editBook(Book book) throws Exception {
+		bookDao.updateBook(book);
+		
+	}
+
+	@Override
+	public void deleteBook(int id) throws Exception {
+		bookDao.deleteBook(id);
+	}
+
+	@Override
+	public void addBook(Book book) throws Exception {
+		bookDao.insertBook(book);
+	}
+
 }

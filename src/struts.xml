@@ -9,17 +9,25 @@
 	<constant name="struts.devMode" value="true" />
 	<!-- 开发模式下打印详细的错误信息 -->
 	<constant name="struts.ui.theme" value="xhtml" />
+	<!-- 配置拦截器 -->
 
 	<package name="default" namespace="/" extends="struts-default">
-		<action name="index" class="com.edu.action.UserAction" method="login">
-			<result name="input">/index.jsp</result>
-			<result name="success">/pages/index.jsp</result>
+		<action name="login">
+			<result >/pages/user/login.jsp</result>
 		</action>
-
+		<action name="index">
+			<result >/pages/index.jsp</result>
+		</action>
+		<action name="registration" >
+			<result >/pages/user/registration.jsp</result>
+		</action>
+		
 	</package>
 	<include file="config/struts_user.xml"></include>
 	<include file="config/struts_course.xml"></include>
 	<include file="config/struts_book.xml"></include>
 	<include file="config/struts_aca.xml"></include>
+	<include file="config/struts_order.xml"></include>
+	<include file="config/struts_store.xml"></include>
 	<include file="config/struts_json.xml"></include>
 </struts>    

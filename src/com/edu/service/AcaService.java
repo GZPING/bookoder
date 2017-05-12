@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
 import com.edu.model.Academy;
+import com.edu.model.ClassModel;
 import com.edu.model.Major;
 
 public interface AcaService {
@@ -22,4 +23,10 @@ public interface AcaService {
 	public void seleteClass(int id) throws Exception;
 
 	public void seleteMajor(int id) throws Exception;
+
+	public void addMajor(Major major)throws Exception;
+
+	public void addClass(ClassModel classModel)throws Exception;
+
+	public void addAca(Academy aca)throws Exception;
 }

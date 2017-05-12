@@ -6,26 +6,85 @@
 		<action name="userIndex" class="com.edu.action.UserAction"
 			method="searchAllUser">
 			<result name="success">/pages/user/userIndex.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="searchUser" class="com.edu.action.UserAction"
+			method="searchUser">
+			<result name="success">/pages/user/user.jsp</result>
 		</action>
 		<action name="addUser" class="com.edu.action.UserAction"
 			method="addUser">
 			<result name="success">/pages/user/addUser.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
 		<action name="editUser" class="com.edu.action.UserAction"
 			method="loadEditUser">
 			<result name="success">/pages/user/editUser.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
+		<action name="userInfo" class="com.edu.action.UserAction"
+			method="userInfo">
+			<result name="success">/pages/user/userInfo.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="userEidtPwd" class="com.edu.action.UserAction"
+			method="userEidtPwd">
+			<result name="success">/pages/user/editPwd.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+			<action name="userApproval" class="com.edu.action.UserAction"
+			method="userApproval">
+			<result name="success">/pages/user/userApproval.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		
 	</package>
 	<!-- json 数据 -->
 	<package name="userJson" namespace="/json" extends="json-default">
-		<action name="deleteUser" class="com.edu.action.UserAction" method="deleteUser">
+		<action name="deleteUser" class="com.edu.action.UserAction"
+			method="deleteUser">
 			<result name="success" type="json">
 				<param name="root">ajaxResult</param>
 			</result>
 		</action>
-		<action name="updateUser" class="com.edu.action.UserAction" method="updateUser">
+		<action name="updateUser" class="com.edu.action.UserAction"
+			method="updateUser">
 			<result name="success" type="json">
-			<param name="root">ajaxResult</param>
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="login" class="com.edu.action.UserAction" method="login">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="logout" class="com.edu.action.UserAction" method="logout">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="editPwd" class="com.edu.action.UserAction"
+			method="editPwd">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="addUser" class="com.edu.action.UserAction"
+			method="addUser">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="editUser" class="com.edu.action.UserAction"
+			method="editUser">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="approvalUser" class="com.edu.action.UserAction"
+			method="approvalUser">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
 			</result>
 		</action>
 	</package>

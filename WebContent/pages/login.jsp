@@ -30,7 +30,7 @@
 
 <div class="container">
 
-    <form id="loginForm" class="form-signin" action="home">
+    <form id="loginForm" class="form-signin" >
         <div class="form-signin-heading text-center">
             <h1 class="sign-title">教材征订系统</h1>
             <img src="/../images/login-logo.png" alt=""/>

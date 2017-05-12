@@ -41,8 +41,8 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<section class="panel"> <header class="panel-heading">
-					用户表<span class="tools pull-right"> <a href="javascript:;"
-						class="fa fa-chevron-down"></a>
+					用户表<span class="tools pull-right"> <button type="button"
+						class="btn btn-success" onclick="method1('dynamic-table')">导出</button>
 					</span> </header>
 					<div class="panel-body">
 						<div class="adv-table">
@@ -68,14 +68,17 @@
 											<td><s:property value="name" /></td>
 											<td><s:property value="sex" /></td>
 											<td><s:property value="academyName" /></td>
-											<td><a data-toggle="modal" href="#editAdminDialog"
-												onclick="dialogEditAdmin(<s:property value="id" />,<s:property value="name" />,<s:property value="admin" />);"><s:property
+											<td><a ><s:property
 														value="adminName" /></a></td>
 											<td><s:property value="phone" /></td>
 											<td><s:property value="mail" /></td>
 											<td><s:property value="description" /></td>
-											<td><a href="<%=path%>/user/editUser?id=<s:property value="id" />">修改</a>&nbsp; &nbsp;
-											<a href="javascript:;" onclick="deleteUser(<s:property value="id" />);">删除</a></td>
+											<td><a
+												href="<%=path%>/user/editUser?id=<s:property value="id" />">修改</a>&nbsp;
+												&nbsp; 
+												<s:if test="#session.userInfo.id==id"></s:if>
+												<s:elseif test="#session.userInfo.admin>admin"></s:elseif><s:else>
+												<a href="javascript:;"onclick="deleteUser(<s:property value="id" />);">删除</a></s:else></td>
 										</tr>
 									</s:iterator>
 								</tbody>
@@ -103,16 +106,16 @@
 						<p>
 							选择<span id="userName"></span>权限：
 						</p>
-						
-						<input type=”hidden“  id="userId" />
-						<input id="id" type="text" class="form-control placeholder-no-fix">
-						<select id="adminId" class="form-control placeholder-no-fix">
+
+						<input type=”hidden“ id="userId" /> <input id="id" type="text"
+							class="form-control placeholder-no-fix"> <select
+							id="adminId" class="form-control placeholder-no-fix">
 							<option value="100">超级管理员</option>
 							<option value="101">校级管理员</option>
 							<option value="102">院级管理员</option>
 							<option value="103">教师</option>
 						</select>
-							
+
 					</div>
 					<div class="modal-footer">
 						<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
@@ -143,6 +146,13 @@
 
 	<!--script for editable table-->
 	<script src="js/dynamic_table_init.js"></script>
+	<script src="js/excelout.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#user").addClass("nav-active");
+			$("#userIndex").addClass("active");
+		})
+	</script>
 
 </body>
 </html>

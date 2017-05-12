@@ -51,7 +51,9 @@
 										<th>课程名</th>
 										<th>班级</th>
 										<th>学院</th>
+										<s:if test="#session.userInfo.admin==103"></s:if><s:else>
 										<th>操作</th>
+										</s:else>
 									</tr>
 								</thead>
 								<tbody>
@@ -61,8 +63,10 @@
 											<td><s:property value="name" /></td>
 											<td><s:property value="classId" /></td>
 											<td><s:property value="academy" /></td>
-											<td><a href="javascript:;">修改</a> &nbsp; &nbsp; <a
+											<s:if test="#session.userInfo.admin==103"></s:if><s:else>
+											<td><a href="course/editCourse?id=<s:property value="id" />">修改</a> &nbsp; &nbsp; <a
 												href="javascript:;">删除</a></td>
+												</s:else>
 										</tr>
 									</s:iterator>
 								</tbody>
@@ -103,13 +107,13 @@
 
 	<!--script for editable table-->
 	<script src="js/course/verCourse.js"></script>
-
-	<!-- END JAVASCRIPTS -->
-	<script>
-		jQuery(document).ready(function() {
-			EditableTable.init();
-		});
+<script type="text/javascript">
+		$(function() {
+			$("#course").addClass("nav-active");
+			$("#courseIndex").addClass("active");
+		})
 	</script>
+
 
 </body>
 </html>

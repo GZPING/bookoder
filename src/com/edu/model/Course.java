@@ -1,19 +1,25 @@
 package com.edu.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Course extends BaseModel {
+	
 	private Integer id; //课号
 	private String name;    //课程名称
 	private Integer majorId;  //专业的id
+	private String  majorName;
+	private Integer academyId;  //学院的id
 	private String classId; 
 	private String academy; 
 	private String teacherName;
 	private String bookName;
+	private String bookId;
+	private int bookPrice;
 	private Integer teacherId;//教师的id
 	private Date udate;
 	private String uperson;
+	private int personId;
 	private int status;
 	private String description; //描述
 	
@@ -71,12 +77,6 @@ public class Course extends BaseModel {
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
 	}
-	public Date getUdate() {
-		return udate;
-	}
-	public void setUdate(Date udate) {
-		this.udate = udate;
-	}
 	public String getUperson() {
 		return uperson;
 	}
@@ -88,5 +88,42 @@ public class Course extends BaseModel {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public Integer getAcademyId() {
+		return academyId;
+	}
+	public void setAcademyId(Integer academyId) {
+		this.academyId = academyId;
+	}
+	public int getPersonId() {
+		return personId;
+	}
+	public void setPersonId(int personId) {
+		this.personId = personId;
+	}
+	
+	public Date getUdate() {
+		return udate;
+	}
+	public void setUdate(Date udate) {
+		this.udate = udate;
+	}
+	public String getBookId() {
+		return bookId;
+	}
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
+	}
+	public String getMajorName() {
+		return majorName;
+	}
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
+	}
+	public int getBookPrice() {
+		return bookPrice;
+	}
+	public void setBookPrice(int bookPrice) {
+		this.bookPrice = bookPrice;
 	}
 }

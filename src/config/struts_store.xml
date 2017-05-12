@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.2.dtd">
+<struts>
+
+	<package name="store" namespace="/store" extends="struts-default">
+		<action name="storeIndex" class="com.edu.action.StoreAction"
+			method="searchAllStore">
+			<result name="success">/pages/store/storeIndex.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="storein" class="com.edu.action.StoreAction"
+			method="storein">
+			<result name="success">/pages/store/storeio.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="storeout" class="com.edu.action.StoreAction"
+			method="storeout">
+			<result name="success">/pages/store/storeio.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="editstore" class="com.edu.action.StoreAction"
+			method="editstore">
+			<result name="success">/pages/store/editStore.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="inStore" class="com.edu.action.StoreAction"
+			method="addStore">
+			<result name="success">/pages/store/storein.jsp</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+				<action name="storeIO" class="com.edu.action.StoreAction"
+			method="storeIO">
+			<result name="success">/pages/store/storeinfo.jsp</result>
+		</action>
+	</package>
+	<!-- json 数据 -->
+	<package name="storeJson" namespace="/storeJson" extends="json-default">
+		<action name="storeIO" class="com.edu.action.StoreAction"
+			method="storeio">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="addStore" class="com.edu.action.StoreAction"
+			method="addStore">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+	</package>
+
+</struts>    

@@ -17,7 +17,7 @@
 <meta name="author" content="ThemeBucket">
 <link rel="shortcut icon" href="#" type="image/png">
 
-<title>教材管理</title>
+<title>教材信息</title>
 
 <!--data table-->
 <link href="js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
@@ -41,26 +41,37 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<section class="panel"> <header class="panel-heading">
-					教材管理 <span class="tools pull-right"> </span> </header>
+					教材信息<span class="tools pull-right"> <button type="button"
+						class="btn btn-success" onclick="method1('hidden-table-info')">导出</button>
+					</span> </header>
 					<div class="panel-body">
 						<div class="adv-table">
-							<table class="display table table-bordered " id="hidden-table-info">
+							<table class="display table table-bordered table-striped"
+								id="dynamic-table">
 								<thead>
 									<tr>
 										<th>书号</th>
 										<th>书名</th>
+										<th>图片</th>
 										<th>作者</th>
+										<th>出版社</th>
+										<th>价格</th>
 										<th>操作</th>
 									</tr>
 								</thead>
 								<tbody>
 									<s:iterator value="bookList">
-										<tr>
+										<tr align=center  valign=middle>
 											<td><s:property value="id" /></td>
 											<td><s:property value="name" /></td>
+											<td><img src="images/book/<s:property value="image"  />"  height="80" width="60" ></td>
 											<td><s:property value="auth" /></td>
-											<td><a href="javascript:;">修改</a> &nbsp; &nbsp; <a
-												href="javascript:;">删除</a></td>
+											<td><s:property value="pub" /></td>
+											<td><s:property value="price" /></td>
+											<td><a
+												href="book/editBook?book.id=<s:property value="id" />">修改</a>
+												&nbsp; &nbsp; <a href="javascript:;"
+												onclick="deleteBook(<s:property value="id" />);">删除</a></td>
 										</tr>
 									</s:iterator>
 								</tbody>
@@ -95,18 +106,18 @@
 	<script type="text/javascript"
 		src="js/data-tables/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+	<script src="js/dynamic_table_init.js"></script>
 
 	<!--common scripts for all pages-->
 	<script src="js/scripts.js"></script>
+	<script src="js/excelout.js"></script>
 
-	<!--script for editable table-->
-	<script src="js/course/verCourse.js"></script>
-
-	<!-- END JAVASCRIPTS -->
-	<script>
-		jQuery(document).ready(function() {
-			EditableTable.init();
-		});
+	<script src="js/book/bookManager.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#book").addClass("nav-active");
+			$("#bookIndex").addClass("active");
+		})
 	</script>
 
 </body>

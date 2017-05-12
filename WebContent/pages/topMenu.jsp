@@ -1,5 +1,7 @@
 
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<script type="text/javascript" src="js/user/login.js"></script>
 <!-- header section start-->
 <div class="header-section">
 
@@ -11,18 +13,17 @@
 
 		<ul class="notification-menu">
 			<li><a href="javascript:void(0);"
-				class="btn btn-default dropdown-toggle"> admin 
+				class="btn btn-default dropdown-toggle"><s:property value="#session.userInfo.adminName"/>  
 			</a></li>
 			<li><a href="#" class="btn btn-default dropdown-toggle"
 				data-toggle="dropdown"> <img src="images/photos/user-avatar.png"
-					alt="" /> John Doe <span class="caret"></span>
+					alt="" /><s:property value="#session.userInfo.name"/> <span class="caret"></span>
 			</a>
-				<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-					<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-					<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-					<li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+				<ul class=" pull-right dropdown-menu dropdown-menu-usermenu " >
+					<li><a href="/gobook/user/userInfo" ><i class="fa fa-user"></i> 查看信息</a></li>
+					<li><a href="/gobook/user/userEidtPwd" ><i class="fa fa-cog"></i> 修改密码</a></li>
+					<li><a href="javascript:;" onclick="logout();"><i class="fa fa-sign-out"></i> 退出系统</a></li>
 				</ul></li>
-
 		</ul>
 	</div>
 	<!--notification menu end -->

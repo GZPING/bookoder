@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.model.Store">
+
+	<resultMap type="com.edu.model.Store" id="storeResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="bookName" column="bookname" />
+		<result property="auth" column="auth" />
+		<result property="pub" column="pub" />
+		<result property="price" column="price" />
+		<result property="totalPrice" column="totalprice" />
+		<result property="number" column="number" />
+		<result property="place" column="place" />
+	</resultMap>
+
+	<resultMap type="com.edu.model.StoreIO" id="storeIOResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="bookName" column="bookname" />
+		<result property="bookId" column="bookid" />
+		<result property="auth" column="auth" />
+		<result property="pub" column="pub" />
+		<result property="price" column="price" />
+		<result property="totalPrice" column="totalprice" />
+		<result property="number" column="number" />
+		<result property="place" column="place" />
+		<result property="date" column="date" />
+		<result property="person" column="person" />
+		<result property="status" column="status" />
+
+	</resultMap>
+
+	<select id="selectStore" parameterType="order" resultMap="storeResult">
+		select
+		s.id id, b.`name` bookname,b.id bookid,b.auth auth ,b.pub
+		pub,b.price price ,
+		s.number number ,s.place place,number*b.price
+		totalprice
+		from book b,store
+		s
+		where s.bookId=b.id
+		<if test="bookId!=null">
+			and bookId=#{bookId}
+		</if>
+	</select>
+	<select id="selectStoreIO" parameterType="storeIO" resultMap="storeIOResult">
+		select s.id id, b.`name` bookname,b.auth auth ,b.pub pub,b.price price
+		,
+		sio.number number ,s.place place,sio.number*b.price
+		totalprice,sio.date
+		date,
+		(select u.name from `user` u where
+		u.id=sio.personId) person ,sio.`status`
+		`status`
+		from book b,store
+		s,storeio sio
+		where s.bookId=b.id and sio.bookId=b.id 
+		<if test="0!=status">
+			and `status`=#{status}
+		</if>
+		<if test="0!=bookId">
+			and s.bookId=#{bookId}
+		</if>
+		<if test="null!=place">
+		    and s.place=#{place}
+		</if>
+		order by sio.date desc
+		<if test="0!=pageNum">
+			limit 0,#{pageNum}
+		</if>
+	</select>
+	<insert id="insertStore" parameterType="store">
+		insert into store(bookId,number,place,description) VALUES
+		(#{bookId},#{number},#{place},#{description})
+	</insert>
+	<insert id="insertStoreIn" parameterType="storeio">
+		insert into storeio(bookId,number,personId,date,place,status,description)
+		values(#{bookId},#{number},#{personId},now(),(select place from store where bookId=#{bookId}),#{status},#{description})
+	</insert>
+	<update id="updateStore" parameterType="store">
+		update store set
+		bookId=#{bookId},number=#{number},place=#{place},description=#{description}
+		where id=#{id}
+	</update>
+	<update id="updateStoreNum" parameterType="store">
+	    update store set number=number-#{number} where bookId=#{bookId}
+	</update>
+</mapper>

@@ -7,7 +7,9 @@
 		<tr>
 			<th>专业号</th>
 			<th>专业名</th>
+			<s:if test="#session.userInfo.admin==103"></s:if><s:else>
 			<th>操作</th>
+			</s:else>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,9 +17,11 @@
 			<tr>
 				<td><s:property value="id" /></td>
 				<td><s:property value="name" /></td>
+				<s:if test="#session.userInfo.admin==103"></s:if><s:else>
 				<td><a href="javascript:;">修改</a> &nbsp; &nbsp; <a
 				href="javascript:;" onclick="deleteMajor(<s:property value="id" />)">删除</a>
 				</td>
+				</s:else>
 			</tr>
 		</s:iterator>
 	</tbody>

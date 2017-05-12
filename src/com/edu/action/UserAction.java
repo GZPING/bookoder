@@ -1,13 +1,19 @@
 package com.edu.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.edu.model.User;
 import com.edu.service.UserService;
+import com.edu.util.Context;
+import com.edu.util.UtilUser;
 
 @SuppressWarnings("serial")
 @Controller
@@ -21,23 +27,113 @@ public class UserAction extends BaseAction {
 	private int id;
 	private int admin;
 	private String ajaxResult;
+	private String oldPwd;
+	
+	private ArrayList<Integer> ids;
 
-	public String execute() throws Exception {
-		return null;
-	}
-
+	/*
+	 * 登录系统
+	 */
 	public String login() {
+		try {
+			user=userService.login(user);
+			if(user==null){
+				this.setAjaxResult("error");
+				return SUCCESS;
+			}
+			if(user.getStatus()==0){
+				this.setAjaxResult("unverified");
+			}else{
+				HttpSession session = ServletActionContext.getRequest().getSession(); 
+				session.setAttribute(Context.USER_INFO, user);
+				if(user.getAdmin()==101){
+					this.setAjaxResult("school");
+				}else if(user.getAdmin()==102){
+					this.setAjaxResult("academy");
+				}else if(user.getAdmin()==103){
+					this.setAjaxResult("teacher");
+				}else if(user.getAdmin()==100){
+					this.setAjaxResult("business");
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.setAjaxResult("error");
+		}
+		return SUCCESS;
+	}
+	
+	public String userApproval(){
+		if(!UtilUser.isLogin()){
+			return LOGIN;
+		}
+		user=new User();
+		user.setStatus(1);
+		try {
+			userList = userService.findAllUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	public String approvalUser(){
+		user=new User();
+		for(int i=0;i<ids.size();i++){
+			user.setId(ids.get(i));
+			try {
+				userService.approvalUser(user);
+				this.setAjaxResult(SUCCESS);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return SUCCESS;
+	}
+	
+	public String  logout(){
+		HttpSession session = ServletActionContext.getRequest().getSession();  
+		session.invalidate(); 
+		this.setAjaxResult("success");
 		return SUCCESS;
 	}
 
 	public String searchAllUser(){
-		userList = userService.findAllUser();
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
+		user=new User();
+		if(id==103){
+			user.setAdmin(103);
+		}
+		try {
+			userList = userService.findAllUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
+	public String searchUser(){
+		user=new User();
+		if(id==103){
+			user.setAdmin(103);
+		}
+		try {
+			userList = userService.findAllUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
 	/*
 	 * 修改用户信息
 	 */
 	public String updateUser() {
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
 		try {
 			userService.updateUser(user);
 			this.setAjaxResult("success");
@@ -51,13 +147,31 @@ public class UserAction extends BaseAction {
  * 添加用户
  */
 	public String addUser() {
+		//id==1 表示添加用户
+		if(id==1){
+			try {
+				user.setStatus(0);
+				user.setUpersonId(1300301);
+				user.setUpersonId(user.getId());
+				if(user.getPassword().equals("")||user.getPassword()==null){
+					user.setPassword(user.getId()+"");
+				}
+				userService.addUser(user);
+				this.setAjaxResult("success");
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setAjaxResult("error");
+			}
+		}
 		return SUCCESS;
 	}
 /*
  * 删除用户
  */
 	public String deleteUser() {
-		
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
 		try {
 			userService.deleteUser(id);
 			this.setAjaxResult("success");
@@ -69,11 +183,18 @@ public class UserAction extends BaseAction {
 	}
 
 	public String update() {
-	//	userService.updateUser(user);
+		try {
+			userService.updateUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
 	public String editAdmin(){
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
 		user.setId(id);
 		user.setAdmin(admin);
 		try {
@@ -89,8 +210,11 @@ public class UserAction extends BaseAction {
 	 * 加载修改界面，用户信息回显
 	 */
 	public String loadEditUser(){
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
 		try {
-			//int id=1300308;
+			
 			user=userService.findUserById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +229,55 @@ public class UserAction extends BaseAction {
 	//	user.setId(id);
 		return SUCCESS;
 	}
-
+	/*
+	 * 用户信息显示
+	 */
+	public String userInfo(){
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
+		HttpSession session = ServletActionContext.getRequest().getSession(); 
+		user=(User) session.getAttribute(Context.USER_INFO);
+		return SUCCESS;
+	}
+	
+	public String userEidtPwd(){
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
+		return SUCCESS;
+	}
+	/*
+	 * 修改密码
+	 */
+	public String editPwd(){
+		if(!UtilUser.isLogin()){
+			return "login";
+		}
+		//验证用户密码
+		if(id==1){
+			try {
+				user=userService.findUserById(user.getId());
+				if(user.getPassword()!=null&&oldPwd!=null&&oldPwd.equals(user.getPassword())){
+					this.setAjaxResult("success");
+				}
+				this.setAjaxResult("errorPwd");
+			} catch (Exception e) {
+				e.printStackTrace();
+				this.setAjaxResult("error");
+			}
+		}else{ //修改密码
+		try {
+			userService.editPwd(user);
+			this.setAjaxResult("success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.setAjaxResult("error");
+		}
+		}
+		return SUCCESS;
+	}
+	
 	public User getUser() {
 		return user;
 	}
@@ -114,10 +286,6 @@ public class UserAction extends BaseAction {
 		this.user = user;
 	}
 
-	public String queryAllUser() {
-		userList = userService.findAllUser();
-		return "userList";
-	}
 
 	public List<User> getUserList() {
 		return userList;
@@ -149,6 +317,22 @@ public class UserAction extends BaseAction {
 
 	public void setAjaxResult(String ajaxResult) {
 		this.ajaxResult = ajaxResult;
+	}
+
+	public String getOldPwd() {
+		return oldPwd;
+	}
+
+	public void setOldPwd(String oldPwd) {
+		this.oldPwd = oldPwd;
+	}
+
+	public ArrayList<Integer> getIds() {
+		return ids;
+	}
+
+	public void setIds(ArrayList<Integer> ids) {
+		this.ids = ids;
 	}
 	
 }

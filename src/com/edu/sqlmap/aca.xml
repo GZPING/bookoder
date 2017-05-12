@@ -41,5 +41,16 @@
 	<delete id="deleteMajorByid" parameterType="int" >
 		delete from gobook.major where id=#{id}
 	</delete>
+	<insert id="insertAca">
+	    insert into academy values(#{id},#{name})
+	</insert>
+	<insert id="insertMajor" parameterType="major">
+	    insert into gobook.major set id=#{id} ,name=#{name} ,academyId=#{academyId} 
+	</insert>
+	
+	<insert id="insertClass" parameterType="classModel">
+	    insert into gobook.class set id=#{id} ,grade=#{grade} ,academyId=#{academyId} ,
+	    majorId=#{majorId},number=#{number}
+	</insert>
 	
 </mapper>

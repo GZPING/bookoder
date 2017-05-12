@@ -19,5 +19,22 @@ public class BookDaoImpl implements BookDao {
 	public List<Book> selectAllBook(Book book) {
 		return sqlSessionTemplate.selectList(Context.SELECT_ALL_BOOK ,book);
 	}
+
+	@Override
+	public void deleteBook(int id) throws Exception {
+		sqlSessionTemplate.delete(Context.DELETE_BOOK_BYID, id);
+	}
+
+	@Override
+	public void insertBook(Book book) throws Exception {
+		sqlSessionTemplate.insert(Context.INSERT_BOOK, book);
+		
+	}
+
+	@Override
+	public void updateBook(Book book) throws Exception {
+		sqlSessionTemplate.update(Context.UPDATE_BOOK, book);
+		
+	}
 	
 }

@@ -15,10 +15,28 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="shortcut icon" href="#" type="image/png">
 
-<title>修改用户</title>
+<title>添加课程</title>
 
 <link href="css/style.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
+<link href="css/jquery.autocomplete.css" rel="stylesheet">
+<style>
+.selectForm ul {
+	width: 500px;
+	list-style: none;
+}
+
+.selectForm ul li {
+	width: 110px;
+	float: left;
+	margin-right: 5px;
+	line-height: 30px;
+}
+
+.selectForm ul li a {
+	margin-left: 15px;
+}
+</style>
 </head>
 
 <body class="sticky-header">
@@ -38,16 +56,25 @@
 					<div class="panel-body">
 						<div class="form">
 							<form class="cmxform form-horizontal adminex-form"
-								id="userInfoForm" method="post" action="">
+								id="courseInfoForm" method="post" action="">
+								<input type="hidden" name="course.majorId" id="majorId">
+								<input type="hidden" name="course.academyId" id="academyId">
+								<input type="hidden" name="course.classId" id="classId">
+								<input type="hidden" name="course.teacherId" id="teacherId">
+								<input type="hidden" name="course.bookId" id="bookId">
 								<div class="form-group ">
-									<label for="firstname" class="control-label col-lg-2">课号</label>
+									<label for="firstname" class="control-label col-lg-2">课号
+										<span style="color: red">*</span>
+									</label>
 									<div class="col-lg-10">
 										<input class=" form-control" id="id" name="course.id"
-											type="text"   />
+											type="text" />
 									</div>
 								</div>
 								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-2">课程名</label>
+									<label for="lastname" class="control-label col-lg-2">课程名
+										<span style="color: red">*</span>
+									</label>
 									<div class="col-lg-10">
 										<input class=" form-control" id="name" name="course.name"
 											type="text" />
@@ -55,37 +82,51 @@
 								</div>
 
 								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-2">学院</label>
+									<label for="lastname" class="control-label col-lg-2">选择班级
+										<span style="color: red">*</span>
+									</label>
 									<div class="col-lg-10">
-										<input class="form-control " id="academy" name="course.academyName"
-											type="text"  onfocus="selectAcademy();"/>
+										<a href="#" class="dropdown-toggle " data-toggle="dropdown"
+											onclick="selectAcademy()"> <b id="academy">学院</b> <b
+											class="caret"></b>
+										</a> <a href="#" class="dropdown-toggle " data-toggle="dropdown"
+											onclick="selectMajorByAcaId($('#academyId').val())"> <b
+											id="major">专业 </b> <b class="caret"></b>
+										</a> <a href="#" class="dropdown-toggle " data-toggle="dropdown"
+											onclick="selectClassByMajId($('#majorId').val())"> <b
+											id="className">班级 </b> <b class="caret"></b>
+										</a> <span id="classInfo"></span>
+										<section class="dropdown-menu selectForm" id="academyMenu"></section>
 									</div>
 								</div>
 								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-2">班级</label>
+									<label for="lastname" class="control-label col-lg-2">选择教师
+										<span style="color: red">*</span>
+									</label>
 									<div class="col-lg-10">
-										<input class=" form-control" id="className" name="course.className"
-											type="text" />
+										<input class=" form-control" id="teacherName"
+											name="course.teacherName" onfocus="selectTeacher();" />
 									</div>
 								</div>
 								<div class="form-group ">
-									<label for="email" class="control-label col-lg-2">教材</label>
+									<label for="email" class="control-label col-lg-2">教材 <span
+										style="color: red">*</span></label>
 									<div class="col-lg-10">
-										<input class="form-control " id="book" name="course.bookName"
-											type="email"  />
+										<input class=" form-control" id="bookName"
+											name="course.bookName" onfocus="selectBook();" />
 									</div>
 								</div>
 								<div class="form-group ">
 									<label for="email" class="control-label col-lg-2">描述</label>
 									<div class="col-lg-10">
-										<input class="form-control " id="description"
-											name="user.description"
-											value="<s:property value="course.description" />" />
+										<textarea rows="3" class="form-control " id="description"
+											name="course.description"
+											value="<s:property value="course.description" /> "></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-lg-offset-2 col-lg-10">
-										<input type="button" class="btn btn-primary"  value="提交" onclick="updateUser();" />
+										<button type="submit" class="btn btn-primary">提交</button>
 									</div>
 								</div>
 							</form>
@@ -96,18 +137,15 @@
 			</div>
 		</div>
 		<!--body wrapper end-->
-
 		<!--footer section start-->
 		<footer> 2017 &copy; GOBOOK<a href="http://www.zhiping.me/"
 			target="_blank"> &nbsp;ZPING</a> </footer>
 		<!--footer section end-->
 	</div>
-		  <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal"
-             class="modal fade">
-        </div>
-        <!-- modal -->
-	<!-- main content end--> 
+	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+		tabindex="-1" id="bookModal" class="modal fade"></div>
+	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+		tabindex="-1" id="userModal" class="modal fade"></div>
 	</section>
 	<!-- Placed js at the end of the document so the pages load faster -->
 	<script src="js/jquery-1.10.2.min.js"></script>
@@ -118,36 +156,19 @@
 	<script src="js/jquery.nicescroll.js"></script>
 
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<script src="js/user/user-validation.js"></script>
+	<script src="js/course/add_course_validation.js"></script>
 	<script src="js/scripts.js"></script>
-	
+
+
 	<script src="js/course/courseManager.js"></script>
-	<script src="js/course/academy.js"></script>
-	
-	<script type="text/javascript">
-	function updateUser(){
-		var path = $("#path").val();
-		var param=$("#courseInfoForm").serialize();
-		var url=path + "/json/updateCourse";
-		$.ajax({
-			type : 'post',
-			url : url,
-			dataType : 'json',
-			data : param,// 序列化表单值  
-			async : false,
-			error : function(request) {
-				alert("修改失败");
-			},
-			success : function(data) {
-				alert(data);
-				if (data== "success") {
-					location.reload();
-				}else{
-					alert("修改失败");
-				}
-			}
-		});
-	};
+	<script src="js/aca/academy.js"></script>
+	<script src="js/book/book.js"></script>
+		<script src="js/user/user.js"></script>
+		<script type="text/javascript">
+		$(function() {
+			$("#course").addClass("nav-active");
+			$("#addCourse").addClass("active");
+		})
 	</script>
 
 </body>

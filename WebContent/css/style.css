@@ -720,7 +720,7 @@ h5.left-nav-title {
 
 .notification-menu .dropdown-menu-usermenu {
     background: #65cea7;
-    min-width: 200px;
+    min-width: 100px;
 }
 
 .notification-menu .dropdown-menu-head ul {
@@ -901,7 +901,7 @@ h5.left-nav-title {
 .main-content {
     margin-left: 240px;
     background: #eff0f4;
-    min-height: 1000px;
+    min-height: 630px;
 }
 
 .page-heading {
@@ -1380,8 +1380,8 @@ ul.goal-progress li .prog-avatar {
 
 ul.goal-progress li .prog-avatar img {
     width: 100%;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
+   /*  border-radius: 50%;
+    -webkit-border-radius: 50%; */
 }
 
 ul.goal-progress li .details {
@@ -4705,4 +4705,19 @@ ol.comment-list {
     background: #EFF0F4;
     border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+
+.selectForm ul {
+	width: 500px;
+	list-style: none;
+}
+
+.selectForm ul li {
+	width: 110px;
+	float: left;
+	margin-right: 5px;
+	line-height: 30px;
+}
+.selectForm ul li a {
+	margin-left: 15px;
 }

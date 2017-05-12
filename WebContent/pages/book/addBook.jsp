@@ -15,7 +15,7 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="shortcut icon" href="#" type="image/png">
 
-<title>修改用户</title>
+<title>添加书籍</title>
 
 <link href="css/style.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
@@ -34,58 +34,68 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<section class="panel"> <header class="panel-heading">
-					修改教学课程</header>
+					添加书籍</header>
 					<div class="panel-body">
 						<div class="form">
 							<form class="cmxform form-horizontal adminex-form"
-								id="userInfoForm" method="post" action="">
+								id="bookInfoForm" method="post" action="bookJson/addBook" enctype="multipart/form-data">
 								<div class="form-group ">
-									<label for="firstname" class="control-label col-lg-2">课号</label>
+									<label for="bookid" class="control-label col-lg-2">书籍号<span
+										style="color: red">*</span></label>
 									<div class="col-lg-10">
-										<input class=" form-control" id="id" name="course.id"
-											type="text"   />
-									</div>
-								</div>
-								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-2">课程名</label>
-									<div class="col-lg-10">
-										<input class=" form-control" id="name" name="course.name"
-											type="text" />
-									</div>
-								</div>
-
-								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-2">学院</label>
-									<div class="col-lg-10">
-										<input class="form-control " id="academy" name="course.academyName"
-											type="text"  onfocus="selectAcademy();"/>
-									</div>
-								</div>
-								<div class="form-group ">
-									<label for="lastname" class="control-label col-lg-2">班级</label>
-									<div class="col-lg-10">
-										<input class=" form-control" id="className" name="course.className"
+										<input class=" form-control" id="bookid" name="book.id"
 											type="text" />
 									</div>
 								</div>
 								<div class="form-group ">
-									<label for="email" class="control-label col-lg-2">教材</label>
+									<label for="name" class="control-label col-lg-2">书籍名<span
+										style="color: red">*</span></label>
 									<div class="col-lg-10">
-										<input class="form-control " id="book" name="course.bookName"
-											type="email"  />
+										<input class=" form-control" id="name" name="book.name"
+											type="text" />
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="auth" class="control-label col-lg-2">作者<span
+										style="color: red">*</span></label>
+									<div class="col-lg-10">
+										<input class=" form-control" id="auth" name="book.auth"
+											type="text" />
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="pub" class="control-label col-lg-2">出版社<span
+										style="color: red">*</span></label>
+									<div class="col-lg-10">
+										<input class=" form-control" id="pub" name="book.pub"
+											type="text" />
+									</div>
+								</div>
+								<div class="form-group ">
+									<label class="control-label col-lg-2">单价<span
+										style="color: red">*</span></label>
+									<div class="col-lg-10">
+										<input class=" form-control" id="price" name="book.price"
+											type="text"  />
+									</div>
+								</div>
+								<div class="form-group ">
+									<label class="control-label col-lg-2">图片</label>
+									<div class="col-lg-10">
+										 <input id="image" name="image" type="file"  class="file"  accept="image/png,image/gif, image/jp2,image/jpeg" value="上传图片" />
 									</div>
 								</div>
 								<div class="form-group ">
 									<label for="email" class="control-label col-lg-2">描述</label>
 									<div class="col-lg-10">
-										<input class="form-control " id="description"
-											name="user.description"
-											value="<s:property value="course.description" />" />
+										<textarea rows="3" class="form-control "  id="description"
+											name="book.description"
+											 ></textarea>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-lg-offset-2 col-lg-10">
-										<input type="button" class="btn btn-primary"  value="提交" onclick="updateUser();" />
+										<button onclick="addUser();" class="btn btn-primary" >提交</button>
 									</div>
 								</div>
 							</form>
@@ -102,13 +112,10 @@
 			target="_blank"> &nbsp;ZPING</a> </footer>
 		<!--footer section end-->
 	</div>
-		  <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal"
-             class="modal fade">
-        </div>
-        <!-- modal -->
-	<!-- main content end--> 
-	</section>
+	<!-- Modal -->
+	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+		tabindex="-1" id="myModal" class="modal fade"></div>
+	<!-- modal --> <!-- main content end--> </section>
 	<!-- Placed js at the end of the document so the pages load faster -->
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -116,38 +123,22 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/modernizr.min.js"></script>
 	<script src="js/jquery.nicescroll.js"></script>
-
+	
+	<script src="js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<script src="js/user/user-validation.js"></script>
+	<script src="js/book/add_book_validation.js"></script>
 	<script src="js/scripts.js"></script>
-	
-	<script src="js/course/courseManager.js"></script>
-	<script src="js/course/academy.js"></script>
-	
+
+
+	<script src="js/book/bookManager.js"></script>
+
 	<script type="text/javascript">
-	function updateUser(){
-		var path = $("#path").val();
-		var param=$("#courseInfoForm").serialize();
-		var url=path + "/json/updateCourse";
-		$.ajax({
-			type : 'post',
-			url : url,
-			dataType : 'json',
-			data : param,// 序列化表单值  
-			async : false,
-			error : function(request) {
-				alert("修改失败");
-			},
-			success : function(data) {
-				alert(data);
-				if (data== "success") {
-					location.reload();
-				}else{
-					alert("修改失败");
-				}
-			}
-		});
-	};
+		$(function() {
+			$("#book").addClass("nav-active");
+			$("#addBook").addClass("active");
+		})
+	
+		
 	</script>
 
 </body>
