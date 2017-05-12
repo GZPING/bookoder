@@ -64,6 +64,13 @@ public class UserAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	public String index(){
+		if(!UtilUser.isLogin()){
+			return LOGIN;
+		}
+		return SUCCESS;
+	}
+	
 	public String userApproval(){
 		if(!UtilUser.isLogin()){
 			return LOGIN;

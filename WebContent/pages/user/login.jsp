@@ -43,6 +43,12 @@
 				</div>
 				<button type="button" class="btn btn-lg btn-login btn-block fa fa-check'"
 					onclick="login()" >登录</button>
+				<div class="registration">
+                让购书更便捷?
+                <a class="" href="registration">
+                  立即 注册
+                </a>
+            </div>
 
 			</div>
 		</form>

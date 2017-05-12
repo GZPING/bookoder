@@ -15,8 +15,9 @@
 		<action name="login">
 			<result >/pages/user/login.jsp</result>
 		</action>
-		<action name="index">
-			<result >/pages/index.jsp</result>
+		<action name="index" class="com.edu.action.UserAction" method="index">
+			<result name="success">/pages/index.jsp</result>
+			<result name="login" type="redirect">/login</result>
 		</action>
 		<action name="registration" >
 			<result >/pages/user/registration.jsp</result>
