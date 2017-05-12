@@ -23,56 +23,11 @@
 
 <div class="container">
 <input type="hidden"  id="path" value="<%=path%>">
-    <!-- <form class="" action="index.html">
-        <div class="form-signin-heading text-center">
-            <h1 class="sign-title">注册</h1>
-            <img src="images/login-logo.png" alt=""/>
-        </div>
-
-
-        <div class="login-wrap" >
-            <p>个人信息</p>
-            <input name="user.id" type="text" autofocus="" placeholder="工号" class="form-control">
-            <input  name="user.name" type="text" autofocus="" placeholder="姓名" class="form-control">
-            <input  name="user.phone" type="text" autofocus="" placeholder="电话" class="form-control">
-            <input  name="user.mail" type="text" autofocus="" placeholder="邮箱" class="form-control"> 
-            <select class=" form-control"  style="font-size:15px;" id="sex" name="user.sex">
-					<option value="男" selected="selected">男</option>
-					<option value="女">女</option>
-			</select> 
-
-				<select class=" form-control" id="admin" name="user.admin">
-					<option value="100">供应商</option>
-					<option value="101">校级管理员</option>
-					<option value="102">院级管理员</option>
-					<option value="103">教师</option>
-				</select>
-
-				<p> 密码</p>
-            <input name="password" type="password" placeholder="Password" class="form-control">
-            <input name="user.password" type="password" placeholder="Re-type Password" class="form-control">
-            <label class="checkbox">
-                <input type="checkbox" value="agree this condition"> I agree to the Terms of Service and Privacy Policy
-            </label>
-            <button type="submit" class="btn btn-lg btn-login btn-block">
-                <i class="fa fa-check"></i>
-            </button>
-
-            <div class="registration">
-                Already Registered.
-                <a href="login.html" class="">
-                    Login
-                </a>
-            </div>
-
-        </div>
-
-    </form> -->
 	<section>
 		<div class="wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<section class="panel">
+					<section class="panel" style="background-color: rgba(200, 200, 200, 0.5);">
 							<header class="panel-heading">
 								<div class="form-signin-heading text-center">
 									<h1 class="sign-title">注册</h1>
@@ -143,7 +98,7 @@
 									</label>
 									<div class="col-lg-10">
 										<a href="#" class="dropdown-toggle " data-toggle="dropdown"
-											onclick="selectAcademy()"> <b id="academy">学院</b> <b
+											onclick="selectAcademy()" style="color: black;"> <b id="academy" >学院</b> <b
 											class="caret"></b>
 										</a>
 										<section class="dropdown-menu selectForm" id="academyMenu"></section>
