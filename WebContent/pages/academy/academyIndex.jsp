@@ -48,8 +48,8 @@
 									<tr>
 										<th>学院号</th>
 										<th>学院名</th>
-										<s:if test="#session.userInfo.admin==103"></s:if><s:else>
-										<th>操作</th>
+										<s:if test="#session.userInfo.admin==101"><th>操作</th></s:if><s:else>
+									
 										</s:else>
 									</tr>
 								</thead>
@@ -58,10 +58,9 @@
 										<tr>
 											<td><s:property value="id" /></td>
 											<td><s:property value="name" /></td>
-											<s:if test="#session.userInfo.admin==103"></s:if><s:else>
-											<td><a href="javascript:;">修改</a> &nbsp; &nbsp; <a
+											<s:if test="#session.userInfo.admin==101"><td><a
 												href="javascript:;"
-												onclick="deleteAca(<s:property value="id" />)">删除</a></td>
+												onclick="deleteAca(<s:property value="id" />)">删除</a></td></s:if><s:else>
 												</s:else>
 										</tr>
 									</s:iterator>

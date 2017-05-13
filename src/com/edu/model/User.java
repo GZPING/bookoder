@@ -13,7 +13,7 @@ public class User extends BaseModel {
 	private String sex;
 	private String adminName;
 	private String academyName;
-	private String academyId;
+	private int academyId;
 	private String phone;
 	private String mail;
 	private Time udate;
@@ -98,10 +98,11 @@ public class User extends BaseModel {
 	public void setUperson(String uperson) {
 		this.uperson = uperson;
 	}
-	public String getAcademyId() {
+	
+	public int getAcademyId() {
 		return academyId;
 	}
-	public void setAcademyId(String academyId) {
+	public void setAcademyId(int academyId) {
 		this.academyId = academyId;
 	}
 	public int getUpersonId() {

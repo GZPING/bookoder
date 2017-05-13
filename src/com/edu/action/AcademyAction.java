@@ -53,8 +53,13 @@ public class AcademyAction extends BaseAction {
 	 * 查看专业信息
 	 */
 	public String searchMajor(){
+		if(!UtilUser.isLogin()){
+			return LOGIN;
+		}
+		major=new Major();
+		major.setAcademyId(UtilUser.getUser().getAcademyId());
 		try {
-			majorList=acaService.searchMajor(null);
+			majorList=acaService.searchMajor(major);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

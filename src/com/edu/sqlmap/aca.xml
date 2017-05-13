@@ -23,7 +23,10 @@
 		select * from gobook.academy
 	</select>
 	<select id="selectMajor" parameterType="major" resultMap="majorResult">
-		select * from gobook.major
+		select * from gobook.major where 1=1
+		<if test="academyId!=null">
+		    and academyId=#{academyId}
+		</if>
 	</select>
 	<select id="selectMajorByAcaId" parameterType="int" resultMap="majorResult">
 		select * from gobook.major where academyId=#{id}

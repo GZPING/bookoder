@@ -5,17 +5,18 @@ var Script = function () {
     });
 
     $().ready(function() {
-        // 提交时验证注释表单
+        // validate the comment form when it is submitted
         $("#commentForm").validate();
 
-        // 验证注册表单并提交
-        $("#userInfoForm").validate({
+        // validate signup form on keyup and submit
+        $("#signupForm").validate({
             rules: {
-            	"user.id":{
-                	required: true,
-                	digits:true
+                firstname: "required",
+                lastname: "required",
+                username: {
+                    required: true,
+                    minlength: 2
                 },
-            	"user.name": "required",
                 password: {
                     required: true,
                     minlength: 5
@@ -25,10 +26,7 @@ var Script = function () {
                     minlength: 5,
                     equalTo: "#password"
                 },
-                "user.phone":{
-                	digits:true
-                },
-                "user.mail": {
+                email: {
                     required: true,
                     email: true
                 },
@@ -36,25 +34,50 @@ var Script = function () {
                     required: "#newsletter:checked",
                     minlength: 2
                 },
+                agree: "required"
             },
             messages: {
-            	"user.id": {
-                	required: "请输入正确工号",
-                	digits:"工号只能是数字"
+                firstname: "Please enter your firstname",
+                lastname: "Please enter your lastname",
+                username: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 2 characters"
                 },
-                "user.name": "请输入正确用户名",
                 password: {
-                    required: "请输入密码",
-                    minlength: "您的密码长度必须至少为5个字符"
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
                 },
                 confirm_password: {
-                    required: "请确认密码",
-                    minlength: "您的密码长度必须至少为5个字符",
-                    equalTo: "请输入与上述相同的密码"
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
                 },
-                "user.mail": "请输入有效的电子邮件地址",
+                email: "Please enter a valid email address",
+                agree: "Please accept our policy"
             }
         });
-    
+
+        // propose username by combining first- and lastname
+        $("#username").focus(function() {
+            var firstname = $("#firstname").val();
+            var lastname = $("#lastname").val();
+            if(firstname && lastname && !this.value) {
+                this.value = firstname + "." + lastname;
+            }
+        });
+
+        //code to hide topic selection, disable for demo
+        var newsletter = $("#newsletter");
+        // newsletter topics are optional, hide at first
+        var inital = newsletter.is(":checked");
+        var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
+        var topicInputs = topics.find("input").attr("disabled", !inital);
+        // show when newsletter is checked
+        newsletter.click(function() {
+            topics[this.checked ? "removeClass" : "addClass"]("gray");
+            topicInputs.attr("disabled", !this.checked);
+        });
     });
+
+
 }();

@@ -20,7 +20,7 @@
 				<td><s:property value="grade" /></td>
 				<td><s:property value="number" /></td>
 				<s:if test="#session.userInfo.admin==103"></s:if><s:else>
-				<td><a href="javascript:;">修改</a> &nbsp; &nbsp; <a
+				<td> <a
 					href="javascript:;" onclick="deleteClass(<s:property value="id" />)">删除</a></td>
 					</s:else>
 			</tr>

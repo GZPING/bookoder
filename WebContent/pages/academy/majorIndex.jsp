@@ -59,7 +59,7 @@
 											<td><s:property value="id" /></td>
 											<td><s:property value="name" /></td>
 											<s:if test="#session.userInfo.admin==103"></s:if><s:else>
-											<td><a href="javascript:;">修改</a> &nbsp; &nbsp; <a
+											<td><!-- <a href="javascript:;">修改</a> &nbsp; &nbsp; --> <a
 												href="javascript:;"
 												onclick="deleteMajor(<s:property value="id" />)">删除</a></td>
 												</s:else>
