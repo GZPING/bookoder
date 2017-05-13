@@ -3,7 +3,7 @@ function selectAcademy(){
 	
 	$.ajax({
 		type : "POST",
-		url : path + "/course/searchAcademy",
+		url : path + "/course/searchAcademy.action",
 		dataType : "html",
 		async : false,
 		error : function(request) {
@@ -23,7 +23,7 @@ function selectClassByMajId(id){
 	var param={"id":id};
 	$.ajax({
 		type : "POST",
-		url : path + "/course/searchClassByMajId",
+		url : path + "/course/searchClassByMajId.action",
 		dataType : "html",
 		data:param,
 		async : false,
@@ -44,7 +44,7 @@ function selectMajorByAcaId(id){
 	var param={"id":id};
 	$.ajax({
 		type : "POST",
-		url : path + "/course/searchMajorByAcaId",
+		url : path + "/course/searchMajorByAcaId.action",
 		dataType : "html",
 		data:param,
 		async : false,

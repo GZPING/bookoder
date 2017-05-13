@@ -6,7 +6,7 @@ function deleteBook(id){
 	var param={"id":id};
 	$.ajax({
 		type : "POST",
-		url : path + "/bookJson/deleteBook",
+		url : path + "/bookJson/deleteBook.action",
 		dataType : "json",
 		data:param,
 		async : false,
@@ -40,7 +40,7 @@ function editBook(){
     formData.append("book.description", description); 
 	$.ajax({
 		type : "POST",
-		url : path + "/bookJson/editBook?id=1",
+		url : path + "/bookJson/editBook.action?id=1",
 		dataType : "json",
 		data:formData,
         contentType: false,
@@ -50,7 +50,7 @@ function editBook(){
 			alert("修改失败");
 		},
 		success : function(data) {
-			window.location.href =path+"/bookIndex";
+			window.location.href =path+"/bookIndex.action";
 		}
 	});
 }
@@ -72,7 +72,7 @@ function addBook(){
     formData.append("book.price", price);  
     formData.append("book.description", description);  
     $.ajax({
-        url: path + "/bookJson/addBook",
+        url: path + "/bookJson/addBook.action",
         type: "POST",
         data: formData,
         /**
@@ -89,7 +89,7 @@ function addBook(){
             	if (confirm("添加成功是否继续添加？")) {
             		location.reload();
             	}else{
-            		window.location.href =path+"/book/bookIndex";
+            		window.location.href =path+"/book/bookIndex.action";
             	}
             }else{
             	 alert("添加失败！");

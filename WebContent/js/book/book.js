@@ -2,7 +2,7 @@ function selectBook() {
 	var path = $("#path").val();
 	$.ajax({
 		type : "POST",
-		url : path + "/book/searchBook",
+		url : path + "/book/searchBook.action",
 		dataType : "html",
 		async : false,
 		error : function(request) {

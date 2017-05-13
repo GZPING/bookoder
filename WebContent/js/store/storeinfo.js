@@ -5,7 +5,7 @@ function fnFormatDetails(oTable, nTr) {
 	var param={"id":aData[1],place:aData[7]};
 	$.ajax({
 		type : "POST",
-		url : path + "/store/storeIO",
+		url : path + "/store/storeIO.action",
 		dataType : "html",
 		async : false,
 		data:param,

@@ -70,7 +70,7 @@
 										
 											</td>
 										<td class="activ"><s:property value="id" /></td>
-										<td class="activ"><s:property value="bookName" />(<s:property value="pub" />)</td>
+										<td class="activ"><s:property value="bookName" /><br>(<s:property value="pub" />)</td>
 										<td class="activ"><s:property value="number" /></td>
 										<td class="activ"><s:property value="totalPrice" /></td>
 										<td class="activ"><s:property value="academy" /></td>

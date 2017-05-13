@@ -5,7 +5,7 @@ function fnFormatDetails(oTable, nTr) {
 	var param={"id":aData[1]}
 	$.ajax({
 		type : "POST",
-		url : path + "/course/searchCourseById",
+		url : path + "/course/searchCourseById.action",
 		dataType : "html",
 		async : false,
 		data:param,

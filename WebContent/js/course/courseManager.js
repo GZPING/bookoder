@@ -1,7 +1,7 @@
 function addCourse(){
 		var path = $("#path").val();
 		var param=$("#courseInfoForm").serialize();
-		var url=path + "/courseJson/addCourse?id=1";
+		var url=path + "/courseJson/addCourse.action?id=1";
 		$.ajax({
 			type : 'post',
 			url : url,
@@ -15,7 +15,7 @@ function addCourse(){
 				if (data== "success") {
 					if (confirm("添加成功，是否继续添加？")) {
 					}{
-						window.location.href =path+"/course/courseIndex";
+						window.location.href =path+"/course/courseIndex.action";
 					}
 				}else{
 					alert("添加课程失败,可能课号已存在");
@@ -27,7 +27,7 @@ function addCourse(){
 	function updateCourse(){
 		var path = $("#path").val();
 		var param=$("#courseInfoForm").serialize();
-		var url=path + "/courseJson/updateCourse?id=1";
+		var url=path + "/courseJson/updateCourse.action?id=1";
 		$.ajax({
 			type : 'post',
 			url : url,
@@ -39,7 +39,7 @@ function addCourse(){
 			},
 			success : function(data) {
 				if (data== "success") {
-					window.location.href =path+"/course/courseIndex";
+					window.location.href =path+"/course/courseIndex.action";
 				}else{
 					alert("修改课程失败");
 				}

@@ -13,7 +13,7 @@
 		var param = jQuery("#editAdminForm").serialize();
 		$.ajax({
 			type : "POST",
-			url : path + "/json/editAdmin",
+			url : path + "/json/editAdmin.action",
 			dataType : "json",
 			data : param,// 序列化表单值  
 			async : false,
@@ -37,7 +37,7 @@
 		if (!confirm("删除是不可恢复的，你确认要删除吗？")) {
 			return;
 		}
-		var url=path + "/json/deleteUser";
+		var url=path + "/json/deleteUser.action";
 		$.ajax({
 			type : 'post',
 			url : url,
@@ -61,7 +61,7 @@
 	function editPwd(){
 	var path = $("#path").val();
 		var param=$("#editPwdForm").serialize();
-		var url=path+"/json/editPwd";
+		var url=path+"/json/editPwd.action";
 		$.ajax({
 			type : 'post',
 			url : url,
@@ -88,7 +88,7 @@
 	function addUser(){
 		var path = $("#path").val();
 		var param=$("#userInfoForm").serialize();
-		var url=path+"/json/addUser?id=1";
+		var url=path+"/json/addUser.action?id=1";
 		$.ajax({
 			type : 'post',
 			url : url,
@@ -101,7 +101,7 @@
 			success : function(data) {
 				alert(data);
 				if (data== "success") {
-					window.location.href =path+"/user/userIndex";
+					window.location.href =path+"/user/userIndex.action";
 				}else{
 					alert("操作失败");
 				}
@@ -115,7 +115,7 @@
 	function updateUser(){
 		var path = $("#path").val();
 		var param=$("#userInfoForm").serialize();
-		var url=path + "/json/updateUser";
+		var url=path + "/json/updateUser.action";
 		$.ajax({
 			type : 'post',
 			url : url,
@@ -128,7 +128,7 @@
 			success : function(data) {
 				if (data== "success") {
 					alert("修改成功");
-					window.location.href =path+"/user/userIndex";
+					window.location.href =path+"/user/userIndex.action";
 				}else{
 					alert("修改失败");
 				}
@@ -165,7 +165,7 @@
 			var mail=$("#mail").text();
 			var description=$("#description").text();
 			param={"user.id":id,"user.name":name,"user.sex":sex,"user.phone":phone,"user.mail":mail,"user.description":description,};
-			var url=path + "/json/updateUser";
+			var url=path + "/json/updateUser.action";
 			$.ajax({
 				type : 'post',
 				url : url,
@@ -208,7 +208,7 @@
 			}
 		})
 		var params = $.param({'ids' : ids}, true);
-		var url = path + "/json/approvalUser";
+		var url = path + "/json/approvalUser.action";
 		$.ajax({
 			url : url,
 			data : params,
@@ -218,7 +218,7 @@
 			dataType : 'json',
 			success : function(data) {
 				if(data=="success"){
-					window.location.href = path + "/user/userApproval";
+					window.location.href = path + "/user/userApproval.action";
 				}else{
 					alert("出现一个意料之外的错误");
 				}

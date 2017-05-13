@@ -3,7 +3,7 @@ function editStatus(orderid,status) {
 	var param = {"order.id" : orderid,status:status};
 	$.ajax({
 		type : "POST",
-		url : path + "/orderJson/approvalOrder?id=1",
+		url : path + "/orderJson/approvalOrder.action?id=1",
 		dataType : "json",
 		data : param,// 序列化表单值
 		async : false,
@@ -22,7 +22,7 @@ function editStatus(orderid,status) {
 function addOrder() {
 	var path = $("#path").val();
 	var param = $("#orderInfoForm").serialize();
-	var url = path + "/orderJson/addOrder?id=1";
+	var url = path + "/orderJson/addOrder.action?id=1";
 	$.ajax({
 		type : 'post',
 		url : url,
@@ -36,7 +36,7 @@ function addOrder() {
 			if (data == "success") {
 				if (confirm("添加成功，是否继续添加？")) {
 				} else {
-					window.location.href = path + "/order/myOrder";
+					window.location.href = path + "/order/myOrder.action";
 				}
 			} else {
 				alert("添加订单失败");
@@ -48,7 +48,7 @@ function addOrder() {
 function editOrder() {
 	var path = $("#path").val();
 	var param = $("#orderInfoForm").serialize();
-	var url = path + "/orderJson/editOrder?id=1";
+	var url = path + "/orderJson/editOrder.action?id=1";
 	$.ajax({
 		type : 'post',
 		url : url,
@@ -60,7 +60,7 @@ function editOrder() {
 		},
 		success : function(data) {
 			if (data == "success") {
-				window.location.href = path + "/order/myOrder";
+				window.location.href = path + "/order/myOrder.action";
 			} else {
 				alert("修改订单失败");
 			}
@@ -83,7 +83,7 @@ function approvalOrder(status) {
 		}
 	})
 	var params = $.param({'ids' : ids,status:status}, true);
-	var url = path + "/orderJson/approvalOrder?id=2";
+	var url = path + "/orderJson/approvalOrder.action?id=2";
 	$.ajax({
 		url : url,
 		data : params,
@@ -109,7 +109,7 @@ function approvalOrderModal(){
 
 function selectOrder(){
 	var path = $("#path").val();
-	var url = path + "/order/selectOrder";
+	var url = path + "/order/selectOrder.action";
 	$.ajax({
 		url : url,
 		cache : false,
@@ -150,7 +150,7 @@ function orderCart(){
 		dataType : 'json',
 		success : function(data) {
 			if(data=="success"){
-				window.location.href = path + "/order/orderCart";
+				window.location.href = path + "/order/orderCart.action";
 			}else{
 				alert("出现一个意料之外的错误");
 			}
@@ -161,7 +161,7 @@ function submitCart(){
 	var path = $("#path").val();
 	var cartId=$("#cartId").val();
 	var number=$("#number").val();
-	var url = path + "/orderJson/submitCart";
+	var url = path + "/orderJson/submitCart.action";
 	var param={"cartId":cartId ,"totalNum":number};
 	$.ajax({
 		url : url,
@@ -172,7 +172,7 @@ function submitCart(){
 		dataType : 'json',
 		success : function(data) {
 			if(data=="success"){
-				window.location.href = path + "/order/cartIndex";
+				window.location.href = path + "/order/cartIndex.action";
 			}else{
 				alert("出现一个意料之外的错误");
 			}
@@ -183,7 +183,7 @@ function submitCart(){
 function cartOut(){
 	var path = $("#path").val();
 	var id = $("#cartId").val();
-	var url = path + "/orderJson/cartOut";
+	var url = path + "/orderJson/cartOut.action";
 	var param={"id":id,"status":1};
 	$.ajax({
 		url : url,
@@ -195,7 +195,7 @@ function cartOut(){
 		success : function(data) {
 			if(data=="success"){
 				alert("操作成功");
-				window.location.href = path + "/order/cartIndex";
+				window.location.href = path + "/order/cartIndex.action";
 			}else{
 				alert("操作失败");
 				location.reload();
@@ -212,7 +212,7 @@ function deleteOrder(id){
 		return;
 	}
 	var path = $("#path").val();
-	var url = path + "/orderJson/deleteOrder";
+	var url = path + "/orderJson/deleteOrder.action";
 	var param={"id":id};
 	$.ajax({
 		url : url,

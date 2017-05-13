@@ -12,7 +12,7 @@ function deleteAca(id) {
 		return;
 	}
 	var path = $("#path").val();
-	var url = path + "/acaJson/deleteAca";
+	var url = path + "/acaJson/deleteAca.action";
 	$.ajax({
 		type : 'post',
 		url : url,
@@ -43,7 +43,7 @@ function deleteMajor(id) {
 		return;
 	}
 	var path = $("#path").val();
-	var url = path + "/acaJson/deleteMajor";
+	var url = path + "/acaJson/deleteMajor.action";
 	$.ajax({
 		type : 'post',
 		url : url,
@@ -74,7 +74,7 @@ function deleteClass(id) {
 		return;
 	}
 	var path = $("#path").val();
-	var url = path + "/acaJson/deleteClass";
+	var url = path + "/acaJson/deleteClass.action";
 	$.ajax({
 		type : 'post',
 		url : url,
@@ -100,7 +100,7 @@ function addAca(){
 	var param = jQuery("#acaForm").serialize();
 	$.ajax({
 		type : "POST",
-		url : path + "/acaJson/addAca",
+		url : path + "/acaJson/addAca.action",
 		dataType : "json",
 		data : param,// 序列化表单值  
 		async : false,
@@ -110,7 +110,7 @@ function addAca(){
 		success : function(data) {
 			if (data == "success") {
 				if (confirm("添加成功，是否添加专业？")) {
-					window.location.href =path+"/aca/addMajor";
+					window.location.href =path+"/aca/addMajor.action";
 				}else{
 					location.reload();
 				}

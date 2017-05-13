@@ -14,7 +14,7 @@ function login() {
 	var param = jQuery("#loginForm").serialize();
 	$.ajax({
 		type : "POST",
-		url : path + "/json/login",
+		url : path + "/json/login.action",
 		dataType : "json",
 		data : param,// 序列化表单值  
 		async : false,
@@ -29,13 +29,13 @@ function login() {
 			} else if (data != "error" && data != "unverified") {
 				if (data == "school") {
 					//转到校级管理员界面
-					window.location.href=path+"/index";
+					window.location.href=path+"/index.action";
 				} else if (data == "academy") {
-					window.location.href=path+"/index";
+					window.location.href=path+"/index.action";
 				} else if (data == "teacher") {
-					window.location.href=path+"/index";
+					window.location.href=path+"/index.action";
 				}else if (data == "business") {
-					window.location.href=path+"/index";
+					window.location.href=path+"/index.action";
 				}
 			}
 
@@ -45,7 +45,7 @@ function login() {
 
 function logout() {
 	var path = $("#path").val();
-	var url=path + "/json/logout";
+	var url=path + "/json/logout.action";
 	$.ajax({
 		type : "POST",
 		url : url,
@@ -56,7 +56,7 @@ function logout() {
 		},
 		success : function(data) {
 			if(data=="success"){
-				window.location.href=path+"/login";
+				window.location.href=path+"/login.action";
 			}
 		}
 	});

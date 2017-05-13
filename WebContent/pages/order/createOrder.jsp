@@ -70,12 +70,12 @@
 										
 											</td>
 										<td class="activ"><s:property value="id" /></td>
-										<td class="activ"><s:property value="bookName" />(<s:property value="pub" />)</td>
+										<td class="activ"><s:property value="bookName" /><br>(<s:property value="pub" />)</td>
 										<td class="activ"><s:property value="number" /></td>
 										<td class="activ"><s:property value="totalPrice" /></td>
 										<td class="activ"><s:property value="academy" /></td>
 										<td class="activ"><s:property value="person" /></td>
-										<td class="activ"><s:property value="date" /></td>
+										<td class="activ"><s:date name="date" format="yyyy-MM-dd hh:mm:ss" /></td>
 										<td><s:if test="status== 1">
 												<a href="javascript:;">未审核</a>
 											</s:if> <s:elseif test="status== 2">

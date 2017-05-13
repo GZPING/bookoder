@@ -63,7 +63,7 @@
 											
 											<td><s:property value="id" /></td>
 											<td><s:property value="person" /></td>
-											<td><s:property value="date" /></td>
+											<td><s:date name="date" format="yyyy-MM-dd hh:mm:ss" /></td>
 											<td><s:property value="price" /></td>
 											
 											<td>

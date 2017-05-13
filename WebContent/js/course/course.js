@@ -2,7 +2,7 @@ function selectCourse() {
 	var path = $("#path").val();
 	$.ajax({
 		type : "POST",
-		url : path + "/course/searchCourse?id=1",
+		url : path + "/course/searchCourse.action?id=1",
 		dataType : "html",
 		async : false,
 		error : function(request) {
