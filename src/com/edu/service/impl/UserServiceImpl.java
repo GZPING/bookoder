@@ -59,4 +59,10 @@ public class UserServiceImpl implements UserService {
 		userDao.updateUserStatus(user);
 		
 	}
+
+	@Override
+	public List<User> findAppUser(User user) throws Exception {
+		
+		return userDao.selectAppUser(user);
+	}
 }

@@ -39,13 +39,34 @@
 		academy,phone,mail,description
 		from gobook.`user` u,gobook.admin a
 		,gobook.academy ac 
-		where u.admin=a.id and u.academyId=ac.id
-		<if test="admin!=0">
-		    and u.admin=#{admin}
-		</if>
-		<if test="status!=0">
+		where u.admin=a.id  and u.academyId=ac.id and u.admin!=100
+		<choose>
+		    <when test="status!=0">
+		          and u.status=0
+		    </when>
+		    <otherwise>
+		        and u.status=1
+		    </otherwise>
+		</choose>
+		<!-- <if test="status!=0">
 		    and u.status=0
-		</if>
+		</if> -->
+	</select>
+	
+	<select id="selectAppUser" parameterType="user" resultMap="userResult">
+	select u.id,u.`name` `name`
+	,sex,`password`,admin,
+	a.name adminname ,phone,mail,description
+	from `user` u , admin a
+	where u.admin=a.id and u.admin=100
+	<choose>
+		<when test="status!=0">
+			and u.status=0
+		</when>
+		<otherwise>
+			and u.status=1
+		</otherwise>
+	</choose>
 	</select>
 
 	<select id="findUserById" parameterType="int" resultMap="userResult">

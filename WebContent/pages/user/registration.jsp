@@ -27,7 +27,7 @@
 		<div class="wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<section class="panel" style="background-color: rgba(200, 200, 200, 0.5);">
+					<section class="panel" ><!-- style="background-color: rgba(200, 200, 200, 0.5);" -->
 							<header class="panel-heading">
 								<div class="form-signin-heading text-center">
 									<h1 class="sign-title">注册</h1>
@@ -93,6 +93,18 @@
 									</div>
 								</div> 
 								<div class="form-group ">
+									<label for="admin" class="control-label col-lg-2">权限<span
+										style="color: red">*</span></label>
+									<div class="col-lg-10">
+										<select class=" form-control" id="admin" name="user.admin" onchange="comformAdmin()">
+											<option value="101">校级管理员</option>
+											<option value="102">院级管理员</option>
+											<option value="103" >教师</option>
+											<option value="100" selected="selected">供应商</option> 
+										</select>
+									</div>
+								</div>
+								<div class="form-group " id="selectAcademy">
 									<label for="lastname" class="control-label col-lg-2">选择学院
 										<span style="color: red">*</span>
 									</label>
@@ -104,21 +116,8 @@
 										<section class="dropdown-menu selectForm" id="academyMenu"></section>
 									</div>
 								</div>
-								<div class="form-group ">
-									<label for="admin" class="control-label col-lg-2">权限<span
-										style="color: red">*</span></label>
-									<div class="col-lg-10">
-										<select class=" form-control" id="admin" name="user.admin">
-											<!-- <option value="100">供应商</option> -->
-											<option value="101">校级管理员</option>
-											<option value="102">院级管理员</option>
-											<option value="103">教师</option>
-										</select>
-									</div>
-								</div>
 								<div class="form-group">
 									<div class="col-lg-offset-2 col-lg-10">
-
 											 	<button type="submit"  class="btn btn-info col-lg-3 "  ><i class="fa fa-check"></i>提交</button> 
 									</div>
 								</div>
@@ -141,6 +140,11 @@
 	<script src="js/user/user-validation.js"></script>
 	<script src="js/aca/academy.js"></script>
 	<script src="js/user/userManager.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#selectAcademy").hide();
+	})
+	</script>
 
 </body>
 </html>

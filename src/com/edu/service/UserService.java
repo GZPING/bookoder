@@ -24,4 +24,6 @@ public interface UserService {
 
 	public abstract void approvalUser(User user) throws Exception;
 
+	public abstract List<User> findAppUser(User user)throws Exception;
+
 }

@@ -53,7 +53,7 @@
 										<th>工号</th>
 										<th>姓名</th>
 										<th>性别</th>
-										<th>学院</th>
+										<s:if test="#session.userInfo.admin==100"></s:if><s:else><th>学院</th></s:else>
 										<th>权限</th>
 										<th>电话</th>
 										<th>邮箱</th>
@@ -67,7 +67,7 @@
 											<td><s:property value="id" /></td>
 											<td><s:property value="name" /></td>
 											<td><s:property value="sex" /></td>
-											<td><s:property value="academyName" /></td>
+											<s:if test="#session.userInfo.admin==100"></s:if><s:else><td><s:property value="academyName" /></td></s:else>
 											<td><a ><s:property
 														value="adminName" /></a></td>
 											<td><s:property value="phone" /></td>

@@ -77,8 +77,15 @@ public class UserAction extends BaseAction {
 		}
 		user=new User();
 		user.setStatus(1);
+		if(UtilUser.getUser().getAdmin()==100){
+			user.setAdmin(100);
+		}
 		try {
-			userList = userService.findAllUser(user);
+			if(UtilUser.getUser().getAdmin()==100){
+				userList = userService.findAppUser(user);
+			}else{
+				userList = userService.findAllUser(user);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -114,8 +121,15 @@ public class UserAction extends BaseAction {
 		if(id==103){
 			user.setAdmin(103);
 		}
+		if(UtilUser.getUser().getAdmin()==100){
+			user.setAdmin(100);
+		}
 		try {
-			userList = userService.findAllUser(user);
+			if(UtilUser.getUser().getAdmin()==100){
+				userList = userService.findAppUser(user);
+			}else{
+				userList = userService.findAllUser(user);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -126,6 +140,7 @@ public class UserAction extends BaseAction {
 		if(id==103){
 			user.setAdmin(103);
 		}
+		
 		try {
 			userList = userService.findAllUser(user);
 		} catch (Exception e) {
@@ -156,7 +171,7 @@ public class UserAction extends BaseAction {
 	public String addUser() {
 		//id==1 表示添加用户
 		if(id==1){
-			try {
+			try {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 				user.setStatus(0);
 				user.setUpersonId(1300301);
 				user.setUpersonId(user.getId());

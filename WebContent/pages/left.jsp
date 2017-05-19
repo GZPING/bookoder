@@ -20,20 +20,20 @@
 			<div class="media logged-user">
 				<img alt="" src="images/photos/user-avatar.png" class="media-object">
 				<div class="media-body">
-					<h4>
+<%-- 			<h4>
 						
 					</h4>
-					<span></span>
+					<span></span> --%>
 				</div>
 			</div>
-
+<%--
 			<h5 class="left-nav-title"></h5>
-			<ul class="nav nav-pills nav-stacked custom-nav">
+			 <ul class="nav nav-pills nav-stacked custom-nav">
 				<li><a href="#"><i class="fa fa-user"></i> <span></span></a></li>
 				<li><a href="#"><i class="fa fa-cog"></i> <span></span></a></li>
 				<li><a href="#"><i class="fa fa-sign-out"></i> <span>
 							</span></a></li>
-			</ul>
+			</ul> --%>
 		</div>
 		<!--sidebar nav start-->
 		<ul class="nav nav-pills nav-stacked custom-nav  " >
@@ -45,6 +45,15 @@
 					<li id="userIndex"><a href="user/userIndex.action">查看用户</a></li>
 					<li id="userApproval"><a href="user/userApproval.action">审核新用户</a></li>
 					<li id="addUser"><a href="user/addUser.action">添加用户</a></li>
+				</ul>
+			</li>
+			</s:if>
+			<s:if test="#session.userInfo.admin==100">
+			<li class="menu-list" id="user"><a href=""><i class="fa fa-user"></i>
+					<span>用户管理</span></a>
+				<ul class="sub-menu-list">
+					<li id="userIndex"><a href="user/userIndex.action">查看用户</a></li>
+					<li id="userApproval"><a href="user/userApproval.action">审核新用户</a></li>
 				</ul>
 			</li>
 			</s:if>

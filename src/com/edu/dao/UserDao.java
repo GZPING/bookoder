@@ -26,5 +26,7 @@ public interface UserDao {
 
 	public abstract void updateUserStatus(User user);
 
+	public abstract List<User> selectAppUser(User user);
+
 
 }

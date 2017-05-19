@@ -59,12 +59,17 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> selectUser(User user) throws Exception {
 		return sqlSessionTemplate.selectList(Context.SELECT_ALL_USER ,user);
-		
 	}
 
 	@Override
 	public void updateUserStatus(User user) {
 		sqlSessionTemplate.update("updateUserStatus", user);
+	}
+
+	@Override
+	public List<User> selectAppUser(User user) {
+		
+		return sqlSessionTemplate.selectList("selectAppUser", user);
 	}
 
 }

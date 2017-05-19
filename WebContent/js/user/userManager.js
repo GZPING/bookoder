@@ -99,8 +99,8 @@
 				alert("发生未知错误");
 			},
 			success : function(data) {
-				alert(data);
 				if (data== "success") {
+					alert("OK");
 					window.location.href =path+"/user/userIndex.action";
 				}else{
 					alert("操作失败");
@@ -224,4 +224,15 @@
 				}
 			}
 		});
+	}
+	
+	function comformAdmin(){
+		var admin=$("#admin").val();
+		if(admin!=100){
+		$("#selectAcademy").show();
+		}else{
+			$("#selectAcademy").hide();
+		}
+				
+	
 	}

@@ -105,6 +105,7 @@
 											type="email" value="<s:property value="user.mail" />" />
 									</div>
 								</div>
+								<s:if test="user.admin==100"></s:if><input type="hidden" name="user.admin" value="100"><s:else>
 								<div class="form-group ">
 									<label for="admin" class="control-label col-lg-2">权限<span
 										style="color: red">*</span></label>
@@ -143,6 +144,7 @@
 										<section class="dropdown-menu selectForm" id="academyMenu"></section>
 									</div>
 								</div>
+								</s:else>
 								<div class="form-group ">
 									<label for="email" class="control-label col-lg-2">描述</label>
 									<div class="col-lg-10">
