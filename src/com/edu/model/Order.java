@@ -14,7 +14,7 @@ public class Order extends BaseModel{
 	private  int bookPrice;
 	private String courseName;
 	private int number;
-	private int cartId;
+	private Integer cartId;
 	private int personId;
 	private String person;
 	private int upersonId;
@@ -77,10 +77,11 @@ public class Order extends BaseModel{
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	public int getCartId() {
+
+	public Integer getCartId() {
 		return cartId;
 	}
-	public void setCartId(int cartId) {
+	public void setCartId(Integer cartId) {
 		this.cartId = cartId;
 	}
 	public int getPersonId() {

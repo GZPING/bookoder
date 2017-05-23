@@ -79,7 +79,7 @@
 								<div class="form-group ">
 									<label class="control-label col-lg-2">图片</label>
 									<div class="col-lg-10">
-									   <img alt="" src="images/book/image1.png">
+									   <img src="images/book/<s:property value="book.image"  />"  height="80" width="60" >
 										<input  id="image" name="image"
 											type="file"  accept="image/png,image/gif, image/jp2,image/jpeg"  value="上传图片"/>
 									</div>

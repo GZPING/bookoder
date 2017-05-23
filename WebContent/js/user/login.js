@@ -2,7 +2,8 @@
 function login() {
 	var path = $("#path").val();
 	var uid= $("#uid").val();
-	var password= $("#password").val();
+/*	var password1= $("#password").val();
+	$("#password").val(md5(password1));*/
 	if(uid==null||uid==""){
 		$("#information").text("工号输入有误");
 		return ;

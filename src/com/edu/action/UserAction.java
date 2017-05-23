@@ -36,6 +36,7 @@ public class UserAction extends BaseAction {
 	 */
 	public String login() {
 		try {
+			user.setPassword(UtilUser.getMD5(user.getPassword()));
 			user=userService.login(user);
 			if(user==null){
 				this.setAjaxResult("error");
@@ -178,6 +179,7 @@ public class UserAction extends BaseAction {
 				if(user.getPassword().equals("")||user.getPassword()==null){
 					user.setPassword(user.getId()+"");
 				}
+				user.setPassword(UtilUser.getMD5(user.getPassword()));
 				userService.addUser(user);
 				this.setAjaxResult("success");
 			} catch (Exception e) {
@@ -277,26 +279,20 @@ public class UserAction extends BaseAction {
 			return "login";
 		}
 		//验证用户密码
-		if(id==1){
+			oldPwd=UtilUser.getMD5(oldPwd);
 			try {
 				user=userService.findUserById(user.getId());
 				if(user.getPassword()!=null&&oldPwd!=null&&oldPwd.equals(user.getPassword())){
+					user.setPassword(UtilUser.getMD5(user.getPassword()));
+					userService.editPwd(user);
 					this.setAjaxResult("success");
+				}else{
+					this.setAjaxResult("errorPwd");
 				}
-				this.setAjaxResult("errorPwd");
 			} catch (Exception e) {
 				e.printStackTrace();
 				this.setAjaxResult("error");
 			}
-		}else{ //修改密码
-		try {
-			userService.editPwd(user);
-			this.setAjaxResult("success");
-		} catch (Exception e) {
-			e.printStackTrace();
-			this.setAjaxResult("error");
-		}
-		}
 		return SUCCESS;
 	}
 	
