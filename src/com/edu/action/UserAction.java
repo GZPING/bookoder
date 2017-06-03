@@ -159,6 +159,14 @@ public class UserAction extends BaseAction {
 		}
 		try {
 			userService.updateUser(user);
+			User u=UtilUser.getUser();
+			u.setName(user.getName());
+			u.setSex(user.getSex());
+			u.setPhone(user.getPhone());
+			u.setMail(user.getMail());
+			u.setDescription(user.getDescription());
+			HttpSession session = ServletActionContext.getRequest().getSession(); 
+			session.setAttribute(Context.USER_INFO, u);
 			this.setAjaxResult("success");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -238,7 +246,6 @@ public class UserAction extends BaseAction {
 			return "login";
 		}
 		try {
-			
 			user=userService.findUserById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -280,10 +287,11 @@ public class UserAction extends BaseAction {
 		}
 		//验证用户密码
 			oldPwd=UtilUser.getMD5(oldPwd);
+			String password=user.getPassword();
 			try {
 				user=userService.findUserById(user.getId());
 				if(user.getPassword()!=null&&oldPwd!=null&&oldPwd.equals(user.getPassword())){
-					user.setPassword(UtilUser.getMD5(user.getPassword()));
+					user.setPassword(UtilUser.getMD5(password));
 					userService.editPwd(user);
 					this.setAjaxResult("success");
 				}else{

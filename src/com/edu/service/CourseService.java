@@ -18,4 +18,6 @@ public interface CourseService {
 
 	public void addCourse(Course course) throws Exception;
 
+	public void deleteCourse(int id)throws Exception;
+
 }

@@ -72,12 +72,13 @@
 				alert("发生未知错误");
 			},
 			success : function(data) {
-				alert(data);
 				if (data== "success") {
 					alert("修改成功，请重新登录");
 					window.location.href =path+"/login"
+				}else if(date=="errorPwd"){
+					alert("旧密码错误");
 				}else{
-					alert("修改失败");
+					alert("发生未知错误");
 				}
 			}
 		});
@@ -139,57 +140,82 @@
 	/*
 	 * 修改个人信息
 	 */
-	function editUserInfo(id){
-		var userId=$("#"+id);
-		var txt=userId.text();
-		var input = $("<input class='form-control' name='user."+id+"' class='input' value='" + txt + "'/>"); 
-		userId.html(input); 
-		input.click(function() { return false; }); 
-		//获取焦点 
-		input.trigger("focus"); 
-		input.blur(function() { 
-			var newtxt = $(this).val(); 
-		    $.validator.setDefaults({
-		        submitHandler: function() { 
-		        	alert("dsf");
-		        }
-		    });
-			//判断文本有没有修改 
-			if (newtxt != txt) { 
-			userId.html(newtxt); 
-			var path = $("#path").val();
-			var id=$("#userId").text();
-			var name=$("#name").text();
-			var sex=$("#sex").text();
-			var phone=$("#phone").text();
-			var mail=$("#mail").text();
-			var description=$("#description").text();
-			param={"user.id":id,"user.name":name,"user.sex":sex,"user.phone":phone,"user.mail":mail,"user.description":description,};
-			var url=path + "/json/updateUser.action";
-			$.ajax({
-				type : 'post',
-				url : url,
-				dataType : 'json',
-				data : param,// 序列化表单值  
-				async : false,
-				error : function(request) {
-					alert("修改失败");
-				},
-				success : function(data) {
-					if (data== "success") {
-						alert("修改成功");
-					}else{
-						alert("修改失败");
+	function editUserInfo(id) {
+	var userId = $("#" + id);
+	var txt = userId.text();
+	var input = $("<input class='form-control' name='user." + id
+			+ "' class='input' value='" + txt + "'/>");
+	userId.html(input);
+	input.click(function() {
+		return false;
+	});
+	// 获取焦点
+	input.trigger("focus");
+	input
+			.blur(function() {
+				var newtxt = $(this).val();
+				$.validator.setDefaults({
+					submitHandler : function() {
+						alert("test");
 					}
+				});
+				// 判断文本有没有修改
+				if (newtxt != txt) {
+					userId.html(newtxt);
+					var path = $("#path").val();
+					var id = $("#userId").text();
+					var name = $("#name").text();
+					var sex = $("#sex").text();
+					var phone = $("#phone").text();
+					var mail = $("#mail").text();
+					var description = $("#description").text();
+					var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+					var r = phone.match(reg);
+					if (r == null) {
+						alert('输入电话错误');
+						userId.html(txt);
+						return;
+					}
+					var mreg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+					var mr = mail.match(mreg);
+					if (mr == null) {
+						alert('输入邮箱错误');
+						userId.html(txt);
+						return;
+					}
+					param = {
+						"user.id" : id,
+						"user.name" : name,
+						"user.sex" : sex,
+						"user.phone" : phone,
+						"user.mail" : mail,
+						"user.description" : description,
+					};
+					var url = path + "/json/updateUser.action";
+					$.ajax({
+						type : 'post',
+						url : url,
+						dataType : 'json',
+						data : param,// 序列化表单值
+						async : false,
+						error : function(request) {
+							alert("修改失败");
+						},
+						success : function(data) {
+							if (data == "success") {
+								userId.html(newtxt);
+								alert("修改成功");
+							} else {
+								userId.html(txt);
+								alert("修改失败");
+							}
+						}
+					});
+				} else {
+					
 				}
 			});
-			} 
-			else 
-			{ 
-				userId.html(newtxt); 
-			} 
-			}); 
-	}
+}
 	
 	function appUser(){
 		if (!confirm("确认审核？")) {

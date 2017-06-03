@@ -18,5 +18,7 @@ public interface CourseDao {
 
 	public Course selectCourseById(int id)throws Exception;
 
+	public void deleteCourse(int id)throws Exception;
+
 
 }

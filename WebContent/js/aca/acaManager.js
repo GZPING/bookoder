@@ -136,9 +136,9 @@ function addMajor(){
 		success : function(data) {
 			if (data == "success") {
 				if (confirm("添加成功，是否添加课程？")) {
-					window.location.href =path+"/aca/addClass";
+					window.location.href =path+"/aca/addCourse";
 				}else{
-					window.location.href =path+"/aca/majorIndex"
+					window.location.href =path+"/aca/addClass";
 				}
 			}else{
 				alert("添加失败");

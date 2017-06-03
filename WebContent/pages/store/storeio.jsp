@@ -17,7 +17,7 @@
 <meta name="author" content="ThemeBucket">
 <link rel="shortcut icon" href="#" type="image/png">
 
-<title>课程管理</title>
+<title>库存操作记录</title>
 
 <!--data table-->
 <link href="js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
@@ -40,7 +40,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<section class="panel"> <header class="panel-heading">
-					用户表<span class="tools pull-right"> <button type="button"
+					库存操作记录<span class="tools pull-right"> <button type="button"
 						class="btn btn-success" onclick="method1('dynamic-table')">导出</button>
 					</span> </header>
 					<div class="panel-body">
@@ -68,9 +68,9 @@
 											<td><s:property value="place" /></td>
 											<td><s:property value="price" /></td>
 											<td><s:property value="number" /></td>
-											<td><s:property value="totalPrice" />
-											<td><s:date name="date" format="yyyy-MM-dd hh:mm:ss" />
-											<td><s:property value="person" />
+											<td><s:property value="totalPrice" /></td>
+											<td><s:date name="date" format="yyyy-MM-dd hh:mm:ss" /></td>
+											<td><s:property value="person" /></td>
 										</tr>
 									</s:iterator>
 								</tbody>

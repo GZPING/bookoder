@@ -12,6 +12,7 @@
 		</action>
 	   <action name="searchBook" class="com.edu.action.BookAction"
 			method="searchAllBook">
+			<result name="success">/pages/book/book.jsp</result>
 			<result name="bookRead">/pages/book/book.jsp</result>
 		</action>
 		<action name="editBook" class="com.edu.action.BookAction"
@@ -41,6 +42,12 @@
 		</action>
 		<action name="addBook" class="com.edu.action.BookAction"
 			method="addBook">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
+		<action name="addBooks" class="com.edu.action.BookAction"
+			method="addBooks">
 			<result name="success" type="json">
 				<param name="root">ajaxResult</param>
 			</result>

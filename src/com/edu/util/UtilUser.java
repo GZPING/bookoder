@@ -1,6 +1,5 @@
 package com.edu.util;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpSession;
@@ -8,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.edu.model.User;
-
-import sun.misc.BASE64Encoder;
 
 public class UtilUser {
 	/*

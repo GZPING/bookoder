@@ -43,6 +43,12 @@ public class CourseDaoImpl implements CourseDao {
 		return sqlSessionTemplate.selectOne(Context.SELECT_COURSE_BYID, id);
 	}
 
+	@Override
+	public void deleteCourse(int id) throws Exception {
+		sqlSessionTemplate.delete("deleteCourse", id);
+		
+	}
+
 
 	
 	

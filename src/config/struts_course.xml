@@ -50,5 +50,10 @@
 				<param name="root">ajaxResult</param>
 			</result>
 		</action>
+				<action name="deleteCourse" class="com.edu.action.CourseAction" method="deleteCourse">
+			<result name="success" type="json">
+				<param name="root">ajaxResult</param>
+			</result>
+		</action>
 	</package>
 </struts>    

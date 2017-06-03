@@ -27,11 +27,11 @@
 	</delete>
 	
 	<insert id="insertBook" parameterType="book">
-	    insert into book values(#{id},#{name},#{auth},#{pub},#{price},#{image})
+	    insert into book values(#{id},#{name},#{auth},#{pub},#{price},#{image},#{description})
 	</insert>
 	
 	<update id="updateBook" parameterType="book">
-	    update book set name=#{name},auth=#{auth},pub=#{pub} ,price=#{price},image=#{image}
+	    update book set name=#{name},auth=#{auth},pub=#{pub} ,price=#{price},image=#{image},description=#{description}
 	    where id=#{id}
 	</update>
 

@@ -44,7 +44,7 @@
 					&nbsp; <span class=" pull-left"><a type="button" class="btn btn-info" onclick="appUser();">通过审核</a> </span> </header>
 					<div class="panel-body">
 						<div class="adv-table">
-							<table class="display table " id="hidden-table-info">
+							<table class="display table " id="dynamic-table">
 								<thead>
 									<tr>
 										<th><input id="checkAll" type="checkbox" /></th>
@@ -107,7 +107,7 @@
 	<script src="js/scripts.js"></script>
 
 	<!--script for editable table-->
-	<script src="js/order/ordertable.js"></script>
+<%-- 	<script src="js/order/ordertable.js"></script> --%>
 	<script src="js/user/userManager.js"></script>
 
 	<!-- END JAVASCRIPTS -->
@@ -115,7 +115,11 @@
 		$(function() {
 			$("#user").addClass("nav-active");
 			$("#userApproval").addClass("active");
+			$('#dynamic-table').dataTable({
+				"aaSorting" : [ [ 1, "desc" ] ]
+			});
 		})
+	
 	</script>
 </body>
 </html>

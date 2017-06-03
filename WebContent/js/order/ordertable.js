@@ -31,7 +31,7 @@ $(document).ready(function() {
 			"bSortable" : false,
 			"aTargets" : [ 0 ]
 		} ],
-		"aaSorting" : [ [ 1, 'asc' ] ]
+		"aaSorting" : [ [ 7, 'desc' ] ]
 	});
 
 	$(document).on('click', '#hidden-table-info tbody  .activ ', function() {

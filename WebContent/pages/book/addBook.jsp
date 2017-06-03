@@ -19,6 +19,7 @@
 
 <link href="css/style.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-fileupload.min.css" />
 </head>
 
 <body class="sticky-header">
@@ -34,7 +35,10 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<section class="panel"> <header class="panel-heading">
-					添加书籍</header>
+					添加书籍<span class="pull-right btn btn-default btn-file">
+                                                <span class="fileupload-new"><i class="fa fa-paper-clip"></i> 导入</span>
+                                                <input id="excelFile" name="excelFile" type="file" class="default"  onchange="uploadExcel(this)"/>
+                                </span></header>
 					<div class="panel-body">
 						<div class="form">
 							<form class="cmxform form-horizontal adminex-form"
@@ -124,11 +128,10 @@
 	<script src="js/modernizr.min.js"></script>
 	<script src="js/jquery.nicescroll.js"></script>
 	
-	<script src="js/ajaxfileupload.js"></script>
+	<script src="js/upload.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 	<script src="js/book/add_book_validation.js"></script>
 	<script src="js/scripts.js"></script>
-
 
 	<script src="js/book/bookManager.js"></script>
 
@@ -137,9 +140,6 @@
 			$("#book").addClass("nav-active");
 			$("#addBook").addClass("active");
 		})
-	
-		
 	</script>
-
 </body>
 </html>

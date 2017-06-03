@@ -27,9 +27,9 @@
 				<td><s:property value="place" /></td>
 				<td><s:property value="price" /></td>
 				<td><s:property value="number" /></td>
-				<td><s:property value="totalPrice" />
-				<td><s:property value="date" />
-				<td><s:property value="person" />
+				<td><s:property value="totalPrice" /></td>
+				<td><s:date name="date" format="yyyy-MM-dd hh:mm:ss" /></td>
+				<td><s:property value="person" /></td>
 			</tr>
 		</s:iterator>
 	</tbody>

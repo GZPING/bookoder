@@ -5,7 +5,7 @@
 
 	<!--logo and iconic logo start-->
 	<div class="logo">
-		<a href="index..action"><img src="images/logo.png" alt=""></a>
+		<a href="index.action"><img src="images/logo.png" alt=""></a>
 	</div>
 
 	<div class="logo-icon text-center">
@@ -111,7 +111,9 @@
 				</ul>
 			</li>
 			</s:if>
+			<s:if test="#session.userInfo.admin!=100">
 			<li id="bookRead"><a href="book/bookIndex.action"><i class="fa fa-book"></i> <span>查看书籍</span></a></li>
+			</s:if>
 			<li><a href="javascript:;" onclick="logout();"><i class="fa fa-sign-in"></i> <span>退出</span></a></li>
 		</ul>
 		<!--sidebar nav end-->

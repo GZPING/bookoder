@@ -75,7 +75,7 @@
 										<td class="activ"><s:property value="totalPrice" /></td>
 										<td class="activ"><s:property value="academy" /></td>
 										<td class="activ"><s:property value="person" /></td>
-										<td class="activ"><s:property value="date" /></td>
+										<td class="activ"><s:date name="date" format="yyyy-MM-dd hh:mm:ss" /></td>
 										<td><s:if test="status== 1">
 												<a href="javascript:;">未审核</a>
 											</s:if> <s:elseif test="status== 2">
@@ -86,7 +86,6 @@
 											</s:elseif><s:elseif test="status==0">
 												<span style="color:red">审核不通过</span>
 											</s:elseif></td>
-										<td>
 										</tr>
 									</s:iterator>
 								</tbody>
@@ -143,7 +142,7 @@
 	<script src="js/scripts.js"></script>
 
 	<!--script for editable table-->
-<%-- 	<script src="js/order/ordertable.js"></script> --%>
+	<script src="js/order/ordertable.js"></script>
 	<script src="js/order/orderManager.js"></script>
 
 	<!-- END JAVASCRIPTS -->

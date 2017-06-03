@@ -52,10 +52,10 @@ public class StoreAction extends BaseAction {
 					storeio.setBookId(store.getBookId());
 					storeio.setNumber(store.getNumber());
 					storeio.setDescription(store.getDescription());
-					storeio.setPlace(store.getPlace());
+					//storeio.setPlace(store.getPlace());
 					storeio.setPersonId(UtilUser.getUser().getId());
-					storeService.storein(storeio);
 					storeService.addStore(store);
+					storeService.storein(storeio);
 					this.setAjaxResult("success");
 				} catch (Exception e) {
 					this.setAjaxResult("error");

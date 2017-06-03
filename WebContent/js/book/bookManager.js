@@ -30,8 +30,12 @@ function editBook(){
 	var pub=$("#pub").val();
 	var price=$("#price").val();
 	var description=$("#description").val();
+	 var image=$("#image");
+
 	var formData = new FormData();
-    formData.append("image", document.getElementById("image").files[0]);   
+    if(!$.trim(image.val())==''){
+    	   formData.append("image", document.getElementById("image").files[0]);   
+    }
     formData.append("book.id", bookid);  
     formData.append("book.name", name);  
     formData.append("book.auth", auth);  
@@ -47,11 +51,16 @@ function editBook(){
         processData: false,
 		async : false,
 		error : function(request) {
-			alert("修改失败");
+			alert("发生未知错误");
 		},
 		success : function(data) {
-			window.location.href =path+"/bookIndex.action";
+			if(date==success){
+			alert("修改成功");
+			window.location.href =path+"/book/bookIndex.action";
+			}else{
+			alert("修改失败");
 		}
+	}
 	});
 }
 
@@ -63,8 +72,11 @@ function addBook(){
 	var pub=$("#pub").val();
 	var price=$("#price").val();
 	var description=$("#description").val();
+	 var image=$("#image");
 	var formData = new FormData();
-    formData.append("image", document.getElementById("image").files[0]);   
+	 if(!$.trim(image.val())==''){
+  	   formData.append("image", document.getElementById("image").files[0]);   
+	 }
     formData.append("book.id", bookid);  
     formData.append("book.name", name);  
     formData.append("book.auth", auth);  

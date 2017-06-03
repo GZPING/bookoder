@@ -70,7 +70,7 @@
 										<td class="activ"><s:property value="totalPrice" /></td>
 										<td class="activ"><s:property value="academy" /></td>
 										<td class="activ"><s:property value="person" /></td>
-										<td class="activ"><s:date name="date"  format="yyyy-MM-dd "/></td>
+										<td class="activ"><s:date name="date"  format="yyyy-MM-dd hh:mm:ss"/></td>
 										<td><s:if test="status== 1">
 												<a href="javascript:;"
 													onclick="eidtStatus(<s:property value="id" />,0)">未审核</a>
@@ -85,7 +85,7 @@
 											</td>
 											<td><s:property value="cartId" /></td>
 										<td>
-										<s:if test="cartId!=0">
+										<s:if test="cartId!=null">
 										<a class="btn btn-default btn-sm">已提交不能修改</a>
 										</s:if><s:else>
 										<a class="btn btn-info btn-sm" href="order/editOrder?id=<s:property value="id" />">修改</a>

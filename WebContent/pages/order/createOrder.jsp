@@ -47,7 +47,7 @@
 							<table class="display table " id="hidden-table-info">
 								<thead>
 									<tr>
-										<th><input id="checkAll" type="checkbox" /></th>
+										<th><input id="checkAll" type="checkbox"  class="checkbox "/></th>
 										<th>订单号</th>
 										<th>书籍名</th>
 										<th>数量</th>

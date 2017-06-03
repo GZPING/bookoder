@@ -107,12 +107,15 @@
 	<script src="js/scripts.js"></script>
 
 	<!--script for editable table-->
-	<script src="js/dynamic_table_init.js"></script>
+<%-- 	<script src="js/dynamic_table_init.js"></script> --%>
 
 	<script type="text/javascript">
 		$(function() {
 			$("#order").addClass("nav-active");
 			$("#cartIndex").addClass("active");
+			$('#dynamic-table').dataTable({
+				"aaSorting" : [ [ 2, "desc" ] ]
+			});
 		})
 	</script>
 

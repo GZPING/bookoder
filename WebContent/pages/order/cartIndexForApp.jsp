@@ -43,7 +43,7 @@
 					<section class="panel"> 
 					<div class="panel-body">
 						<div class="adv-table">
-							<table class="display table " id="hidden-table-info">
+							<table class="display table " id="dynamic-table">
 								<thead>
 									<tr>
 										<th>订单号</th>
@@ -60,7 +60,7 @@
 									<tr>
 										<td><s:property value="id" /></td>
 											<td><s:property value="person" /></td>
-											<td><s:property value="date" /></td>
+											<td><s:date name="date" format="yyyy-MM-dd hh:mm:ss" /></td>
 											<td><s:property value="price" /></td>
 											<td>
 											<s:if test="status==0"><a>未出库</a>
@@ -113,7 +113,7 @@
 	<script src="js/scripts.js"></script>
 
 	<!--script for editable table-->
-	<script src="js/order/ordertable.js"></script>
+<%-- 	<script src="js/order/ordertable.js"></script> --%>
 	<script src="js/order/orderManager.js"></script>
 
 	<!-- END JAVASCRIPTS -->
@@ -121,6 +121,9 @@
 	$(function() {
 		$("#order").addClass("nav-active");
 		$("#cartIndex").addClass("active");
+		$('#dynamic-table').dataTable({
+			"aaSorting" : [ [ 2, "desc" ] ]
+		});
 	})
 	</script>
 </body>

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 
 import com.edu.model.Book;
 import com.edu.service.BookService;
+import com.edu.util.ExcelUtil;
 import com.edu.util.ImageUtil;
 import com.edu.util.UtilUser;
 
@@ -32,6 +34,7 @@ public class BookAction extends BaseAction {
 	private int status;
 
 	private File image;
+	private File file;
 	private String imageFileName; // 得到文件的名称，写法是固定的
 	private String imageContentType; // 得到文件的类型
 
@@ -64,6 +67,7 @@ public class BookAction extends BaseAction {
 			}
 			try {
 				bookService.editBook(book);
+				this.setAjaxResult(SUCCESS);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -79,7 +83,6 @@ public class BookAction extends BaseAction {
 			}
 		}
 		return SUCCESS;
-
 	}
 
 	public String deleteBook() {
@@ -117,6 +120,31 @@ public class BookAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/*
+	 * 批量导入
+	 */
+	@SuppressWarnings("rawtypes")
+	public String addBooks(){
+		this.setAjaxResult(ERROR);
+		if (file != null) {
+			List list=new ArrayList();
+			list=ExcelUtil.readFile(file);
+			try {
+			for(int i=1;i<list.size();i++){
+				String[] obj=new String[6];
+				obj=(String[]) list.get(i);
+				Book book=new Book(Integer.parseInt(obj[0]), obj[1], obj[2], obj[3], Integer.parseInt(obj[4]), obj[5]);
+				bookService.addBook(book);
+			}
+			this.setAjaxResult(SUCCESS);
+			} catch (Exception e) {
+				this.setAjaxResult(ERROR);
+				e.printStackTrace();
+			}
+		}
+		return SUCCESS;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -171,6 +199,14 @@ public class BookAction extends BaseAction {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
 	}
 
 }

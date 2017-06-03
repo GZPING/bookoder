@@ -72,7 +72,7 @@
 									</div>
 								</div>
 								<div class="form-group ">
-									<label class="control-label col-lg-2"> 性别：<a href="javascript:;" class="fa fa-edit" onclick="editUserInfo('sex');"> </a>
+									<label class="control-label col-lg-2"> 性别：<!-- <a href="javascript:;" class="fa fa-edit" onclick="editUserInfo('sex');"> --> </a>
 									</label>
 									<div class="col-lg-10">
 										<span id="sex"><s:property value="user.sex"/></span>
@@ -123,7 +123,7 @@
 	<script src="js/jquery.nicescroll.js"></script>
 
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<script src="js/user/user-validation.js"></script>
+<%-- 	<script src="js/user/user-validation.js"></script> --%>
 	<script src="js/scripts.js"></script>
 
 	<script src="js/user/userManager.js"></script>

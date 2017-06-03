@@ -53,7 +53,7 @@
 								<div class="form-group ">
 									<label for="password" class="control-label col-lg-2">新密码</label>
 									<div class="col-lg-10">
-										<input class="form-control " id="password" name="user.password"
+										<input class="form-control " id="password" name="password"
 											type="password" />
 									</div>
 								</div>
@@ -61,12 +61,12 @@
 									<label for="confirm_password" class="control-label col-lg-2">确认密码</label>
 									<div class="col-lg-10">
 										<input class="form-control " id="confirm_password"
-											name="confirm_password" type="password" />
+											name="user.password" type="password" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-lg-offset-2 col-lg-10">
-										<input  type="button" class="btn btn-primary" value="提交"  onclick="editPwd();"/>
+										<button  type="submit" class="btn btn-primary"  >提交</button>
 									</div>
 								</div>
 							</form>
@@ -95,7 +95,7 @@
 	<script src="js/jquery.nicescroll.js"></script>
 
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<script src="js/user/user-validation.js"></script>
+	<script src="js/user/pwd-validation.js"></script>
 	<script src="js/user/userManager.js"></script>
 	<script src="js/scripts.js"></script>
 

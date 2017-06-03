@@ -10,6 +10,19 @@ public class Book {
 	private String description;
 	private int pageNum;
 	
+	public Book(int id, String name, String auth, String pub, int price, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.auth = auth;
+		this.pub = pub;
+		this.price = price;
+		this.description = description;
+	}
+	
+	public Book(){
+		
+	}
 	public int getId() {
 		return id;
 	}

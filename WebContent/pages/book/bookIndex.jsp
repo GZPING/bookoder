@@ -42,7 +42,7 @@
 				<div class="col-sm-12">
 					<section class="panel"> <header class="panel-heading">
 					教材信息<span class="tools pull-right"> <button type="button"
-						class="btn btn-success" onclick="method1('hidden-table-info')">导出</button>
+						class="btn btn-success" onclick="method1('dynamic-table')">导出</button>
 					</span> </header>
 					<div class="panel-body">
 						<div class="adv-table">
@@ -106,7 +106,7 @@
 	<script type="text/javascript"
 		src="js/data-tables/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
-	<script src="js/dynamic_table_init.js"></script>
+	<%-- <script src="js/dynamic_table_init.js"></script> --%>
 
 	<!--common scripts for all pages-->
 	<script src="js/scripts.js"></script>
@@ -117,6 +117,9 @@
 		$(function() {
 			$("#book").addClass("nav-active");
 			$("#bookIndex").addClass("active");
+			$('#dynamic-table').dataTable({
+				"aaSorting" : [ [ 0, "asc" ] ]
+			});
 		})
 	</script>
 

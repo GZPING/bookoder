@@ -50,6 +50,7 @@
 										<th>课程号</th>
 										<th>课程名</th>
 										<th>班级</th>
+										<th>专业</th>
 										<th>学院</th>
 										<s:if test="#session.userInfo.admin==103"></s:if><s:else>
 										<th>操作</th>
@@ -62,10 +63,11 @@
 											<td><s:property value="id" /></td>
 											<td><s:property value="name" /></td>
 											<td><s:property value="classId" /></td>
+											<td><s:property value="majorName" /></td>
 											<td><s:property value="academy" /></td>
 											<s:if test="#session.userInfo.admin==103"></s:if><s:else>
 											<td><a href="course/editCourse?id=<s:property value="id" />">修改</a> &nbsp; &nbsp; <a
-												href="javascript:;">删除</a></td>
+												href="javascript:;" onclick="deleteCourse(<s:property value="id" />)">删除</a></td>
 												</s:else>
 										</tr>
 									</s:iterator>
@@ -106,6 +108,7 @@
 	<script src="js/scripts.js"></script>
 
 	<!--script for editable table-->
+		<script src="js/course/courseManager.js"></script>
 	<script src="js/course/verCourse.js"></script>
 <script type="text/javascript">
 		$(function() {

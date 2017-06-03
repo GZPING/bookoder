@@ -56,8 +56,10 @@ public class AcademyAction extends BaseAction {
 		if(!UtilUser.isLogin()){
 			return LOGIN;
 		}
+		if(UtilUser.getUser().getAdmin()==102){
 		major=new Major();
 		major.setAcademyId(UtilUser.getUser().getAcademyId());
+		}
 		try {
 			majorList=acaService.searchMajor(major);
 		} catch (Exception e) {

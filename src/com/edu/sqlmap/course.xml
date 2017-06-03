@@ -53,13 +53,12 @@
 	<select id="selectAllCourse" parameterType="course"  resultMap="courseResult">
 		select
 		c.id id,c.name name,m.`id` classId ,u.`name` teacher,b.id bookid,
-		b.`name` book ,b.price bookprice, 
+		b.`name` book ,m.name majorname, 
 		a.`name` academy ,c.description description
-		from gobook.course
-		c,gobook.user u,gobook.class m,gobook.academy a ,gobook.book b
+		from course c,user u,class cl,academy a ,book b,major m
 		where
-		c.classId=m.id and c.academyId=a.id and c.teacherId=u.id and
-		c.bookId=b.id
+		c.classId=cl.id and c.academyId=a.id and c.teacherId=u.id and
+		c.bookId=b.id and m.id=c.majorId
 		<if test="teacherId!=null">
 		    and c.teacherId=#{teacherId}
 		</if>
@@ -89,4 +88,7 @@
 	    teacherId=#{teacherId},bookId=#{bookId},udate=now(),uperson=#{personId},status=#{status},description=#{description}
 	    where id=#{id}
 	    </update>
+	   <delete id="deleteCourse" parameterType="int">
+		delete from course where id=#{id}
+	    </delete>
 </mapper>

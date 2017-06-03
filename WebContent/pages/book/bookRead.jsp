@@ -99,7 +99,7 @@
 	<script type="text/javascript"
 		src="js/data-tables/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
-	<script src="js/dynamic_table_init.js"></script>
+<%-- 	<script src="js/dynamic_table_init.js"></script> --%>
 
 	<!--common scripts for all pages-->
 	<script src="js/scripts.js"></script>
@@ -108,6 +108,9 @@
 	<script type="text/javascript">
 		$(function() {
 			$("#bookRead").addClass("active");
+			$('#dynamic-table').dataTable({
+				"aaSorting" : [ [ 0, "asc" ] ]
+			});
 		})
 	</script>
 

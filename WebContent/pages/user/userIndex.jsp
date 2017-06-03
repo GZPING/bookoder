@@ -145,12 +145,15 @@
 	<script src="js/scripts.js"></script>
 
 	<!--script for editable table-->
-	<script src="js/dynamic_table_init.js"></script>
+<%-- 	<script src="js/dynamic_table_init.js"></script> --%>
 	<script src="js/excelout.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$("#user").addClass("nav-active");
 			$("#userIndex").addClass("active");
+			$('#dynamic-table').dataTable({
+				"aaSorting" : [ [ 0, "asc" ] ]
+			});
 		})
 	</script>
 

@@ -113,6 +113,19 @@ public class CourseAction extends BaseAction {
 		}
 		return SUCCESS;
 	}
+	
+	/*
+	 * 删除课程
+	 */
+	public String deleteCourse(){
+		try {
+			courseService.deleteCourse(id);
+			this.setAjaxResult(SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
 
 	public Course getCourse() {
 		return course;
