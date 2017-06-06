@@ -53,7 +53,7 @@
 	<select id="selectAllCourse" parameterType="course"  resultMap="courseResult">
 		select
 		c.id id,c.name name,m.`id` classId ,u.`name` teacher,b.id bookid,
-		b.`name` book ,m.name majorname, 
+		b.`name` book ,b.price bookprice,m.name majorname, 
 		a.`name` academy ,c.description description
 		from course c,user u,class cl,academy a ,book b,major m
 		where

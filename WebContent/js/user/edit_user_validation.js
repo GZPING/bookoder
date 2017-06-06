@@ -2,12 +2,15 @@ var Script = function () {
 
     $.validator.setDefaults({
         submitHandler: function() { 
+        	var admin=$("#admin").val();
+        	if(admin!=100){
         	var acaId=$("#academyId").val();
         	if(acaId==0){
         		$("#academyInfo").addClass("error");
         		$("#academyInfo").text("请选择正确学院");
         		return;
         	}
+          	}
         	updateUser();
         }
     });

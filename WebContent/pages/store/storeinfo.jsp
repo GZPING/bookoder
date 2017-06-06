@@ -6,7 +6,7 @@
 	<thead>
 		<tr>
 			<th>操作</th>
-			<th>书名</th>
+			<th>书名(作者)</th>
 			<th>仓库位置</th>
 			<th>单价</th>
 			<th>数量</th>

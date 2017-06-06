@@ -59,6 +59,9 @@
 	a.name adminname ,phone,mail,description
 	from `user` u , admin a
 	where u.admin=a.id and u.admin=100
+	<if test="id!=0">
+	   and  u.id=#{id}
+	</if>
 	<choose>
 		<when test="status!=0">
 			and u.status=0

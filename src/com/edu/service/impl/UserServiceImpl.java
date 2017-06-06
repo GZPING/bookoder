@@ -31,7 +31,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public User findUserById(Integer userId) {
-		return userDao.findUserByid(userId);
+		User user=new User();
+		user=userDao.findUserByid(userId);
+		if(user== null){
+			User u=new User();
+			u.setId(userId);
+			user=userDao.selectAppUser(u).get(0);
+		}
+		return user;
 	}
 
 	public User login(User user) throws Exception{

@@ -115,8 +115,9 @@
                         <p>是否通过审核</p>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-default" type="button" onclick="approvalOrder(0)">否</button>
-                        <button class="btn btn-primary" type="button" onclick="approvalOrder(1)">是</button>
+                        <button class="btn btn-primary col-lg-5" type="button" onclick="approvalOrder(1)">是</button>
+                        <button class="btn btn-default col-lg-5" type="button" onclick="approvalOrder(0)">否</button>
+                        
                     </div>
                 </div>
             </div>

@@ -50,7 +50,7 @@
 								<thead>
 									<tr>
 										<th>操作</th>
-										<th>书名</th>
+										<th>书名(作者)</th>
 										<th>仓库位置</th>
 										<th>单价</th>
 										<th>数量</th>
@@ -106,12 +106,15 @@
 
 	<!--common scripts for all pages-->
 	<script src="js/scripts.js"></script>
-	<script src="js/dynamic_table_init.js"></script>
+<%-- 	<script src="js/dynamic_table_init.js"></script> --%>
 	<script src="js/excelout.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$("#store").addClass("nav-active");
 			$("#storeInfo").addClass("active");
+			$('#dynamic-table').dataTable({
+				"aaSorting" : [ [ 6, "desc" ] ]
+			});
 		})
 	</script>
 

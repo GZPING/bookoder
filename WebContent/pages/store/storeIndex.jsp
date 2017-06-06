@@ -51,7 +51,7 @@
 								<thead>
 									<tr>
 									<th>书号</th>
-										<th>书名</th>
+										<th>书名(作者)</th>
 										<th>出版社</th>
 										<th>单价</th>
 										<th >数量</th>

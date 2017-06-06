@@ -191,7 +191,7 @@
 						"user.mail" : mail,
 						"user.description" : description,
 					};
-					var url = path + "/json/updateUser.action";
+					var url = path + "/json/updateUser.action?id=1";
 					$.ajax({
 						type : 'post',
 						url : url,
@@ -205,6 +205,7 @@
 							if (data == "success") {
 								userId.html(newtxt);
 								alert("修改成功");
+								location.reload();
 							} else {
 								userId.html(txt);
 								alert("修改失败");
@@ -223,7 +224,7 @@
 		}
 		var path = $("#path").val();
 		var ids = [];
-		var tbodyObj = document.getElementById('hidden-table-info');
+		var tbodyObj = document.getElementById('dynamic-table');
 		$("table :checkbox").each(function(key, value) {
 			if (this == document.getElementById('checkAll')) {
 			} else {

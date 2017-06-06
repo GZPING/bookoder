@@ -105,26 +105,27 @@
 											type="email" value="<s:property value="user.mail" />" />
 									</div>
 								</div>
-								<s:if test="user.admin==100"></s:if><input type="hidden" name="user.admin" value="100"><s:else>
+								<s:if test="user.admin==100"><input type="hidden"  id="admin" name="user.admin" value="100"></s:if>
+								<s:else>
 								<div class="form-group ">
 									<label for="admin" class="control-label col-lg-2">权限<span
 										style="color: red">*</span></label>
 									<div class="col-lg-10">
 										<select name="user.admin" class="form-control ">
 											<s:if test="user.admin==101">
-												<option value="101" selected="selected">校级管理员</option>
-												<option value="102">院级管理员</option>
-												<option value="103">教师</option>
+												<option value=101 selected="selected">校级管理员</option>
+												<option value=102>院级管理员</option>
+												<option value=103>教师</option>
 											</s:if>
 											<s:elseif test="user.admin==102">
-												<option value="101">校级管理员</option>
-												<option value="102" selected="selected">院级管理员</option>
-												<option value="103">教师</option>
+												<option value=101>校级管理员</option>
+												<option value=102 selected="selected">院级管理员</option>
+												<option value=103 >教师</option>
 											</s:elseif>
 											<s:elseif test="user.admin==103">
-												<option value="101">校级管理员</option>
-												<option value="102">院级管理员</option>
-												<option value="103" selected="selected">教师</option>
+												<option value=101>校级管理员</option>
+												<option value=102>院级管理员</option>
+												<option value=103 selected="selected">教师</option>
 											</s:elseif>
 										</select>
 									</div>
